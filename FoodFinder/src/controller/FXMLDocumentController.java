@@ -18,15 +18,47 @@ import javafx.scene.control.Label;
  */
 public class FXMLDocumentController implements Initializable {
     
+@FXML
+    private TableView<?> eventTable;
+
     @FXML
-    private Label label;
-    
+    private TableColumn<?, ?> eventNameColumn;
+
     @FXML
-    private void handleButtonAction(ActionEvent event) {
-        System.out.println("You clicked me!");
-        label.setText("Hello World!");
+    private GridPane detailsGrid;
+
+    @FXML
+    private Label eventName;
+
+    @FXML
+    private Label organizationName;
+
+    @FXML
+    private Label dateLabel;
+
+    @FXML
+    private Label timeLabel;
+
+    @FXML
+    private Label locationLabel;
+
+    @FXML
+    private Label descriptionLabel;
+
+    @FXML
+    void saveEvent(ActionEvent event) {
+
     }
-    
+
+    @FXML
+    void scrollDirection(ScrollEvent event) {
+
+    }
+
+    @FXML
+    void showDetails(MouseEvent event) {
+
+    }
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
