@@ -27,6 +27,7 @@ public class FoodFinder extends Application {
         stage.show();
         System.out.println("Hayden Long");
         System.out.println("Taesan Kim");
+        System.out.println("Joshua Canale");
     }
 
     /**
