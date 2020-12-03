@@ -25,6 +25,7 @@ public class FoodFinder extends Application {
         
         stage.setScene(scene);
         stage.show();
+        System.out.println("Hayden Long");
     }
 
     /**
