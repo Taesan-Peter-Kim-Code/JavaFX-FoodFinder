@@ -5,12 +5,17 @@
  */
 package controller;
 
+import java.awt.event.MouseEvent;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.input.ScrollEvent;
+import javafx.scene.layout.GridPane;
 
 /**
  *
@@ -18,7 +23,7 @@ import javafx.scene.control.Label;
  */
 public class FXMLDocumentController implements Initializable {
     
-@FXML
+    @FXML
     private TableView<?> eventTable;
 
     @FXML
@@ -46,7 +51,7 @@ public class FXMLDocumentController implements Initializable {
     private Label descriptionLabel;
 
     @FXML
-    void saveEvent(ActionEvent event) {
+    void saveEventBtn(ActionEvent event) {
 
     }
 
@@ -61,7 +66,7 @@ public class FXMLDocumentController implements Initializable {
     }
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+           
     }    
     
 }
