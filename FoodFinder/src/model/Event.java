@@ -26,14 +26,14 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Table(name = "EVENT")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Event.findAll", query = "SELECT e FROM Event_1 e")
-    , @NamedQuery(name = "Event.findById", query = "SELECT e FROM Event_1 e WHERE e.id = :id")
-    , @NamedQuery(name = "Event.findByLocation", query = "SELECT e FROM Event_1 e WHERE e.location = :location")
-    , @NamedQuery(name = "Event.findByDate", query = "SELECT e FROM Event_1 e WHERE e.date = :date")
-    , @NamedQuery(name = "Event.findByOrganizationname", query = "SELECT e FROM Event_1 e WHERE e.organizationname = :organizationname")
-    , @NamedQuery(name = "Event_1.findByDescription", query = "SELECT e FROM Event_1 e WHERE e.description = :description")
-    , @NamedQuery(name = "Event_1.findByEventname", query = "SELECT e FROM Event_1 e WHERE e.eventname = :eventname")
-    , @NamedQuery(name = "Event_1.findByTime", query = "SELECT e FROM Event_1 e WHERE e.time = :time")})
+    @NamedQuery(name = "Event.findAll", query = "SELECT e FROM Event e")
+    , @NamedQuery(name = "Event.findById", query = "SELECT e FROM Event e WHERE e.id = :id")
+    , @NamedQuery(name = "Event.findByLocation", query = "SELECT e FROM Event e WHERE e.location = :location")
+    , @NamedQuery(name = "Event.findByDate", query = "SELECT e FROM Event e WHERE e.date = :date")
+    , @NamedQuery(name = "Event.findByOrganizationname", query = "SELECT e FROM Event e WHERE e.organizationname = :organizationname")
+    , @NamedQuery(name = "Event.findByDescription", query = "SELECT e FROM Event e WHERE e.description = :description")
+    , @NamedQuery(name = "Event.findByEventname", query = "SELECT e FROM Event e WHERE e.eventname = :eventname")
+    , @NamedQuery(name = "Event.findByTime", query = "SELECT e FROM Event e WHERE e.time = :time")})
 public class Event implements Serializable {
 
     private static final long serialVersionUID = 1L;
