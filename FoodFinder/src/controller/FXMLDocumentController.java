@@ -30,7 +30,7 @@ import model.Event;
  * @author taesankim
  */
 public class FXMLDocumentController implements Initializable {
-    
+
     @FXML
     private TableView<Event> eventTable;
 
@@ -67,7 +67,7 @@ public class FXMLDocumentController implements Initializable {
     void scrollDirection(ScrollEvent event) {
 
     }
-    
+
     public void setTableData(List<Event> eventList) {
 
         eventList = FXCollections.observableArrayList();
@@ -80,30 +80,24 @@ public class FXMLDocumentController implements Initializable {
         eventTable.refresh();
     }
 
-    
     public void initialize(URL url, ResourceBundle rb) {
-        
+
         EntityManager myManager = (EntityManager) Persistence.createEntityManagerFactory("FoodFinderPU").createEntityManager();
         eventNameColumn.setCellValueFactory(new PropertyValueFactory<>("eventName"));
-        
-        
+
         eventTable.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
-        
-        
-        
-        
+
     }
 
-@FXML
+    @FXML
     void showDetails(MouseEvent event, Event model) {
         selectedModel = model;
         eventName.setText(model.getId().toString());
         organizationName.setText(model.getOrganizationname());
-        dateLabel.setText(model.getDate());//Need to change the data type in event
-        timeLabel.setText(model.getTime());//Need to change the data type in event
+        dateLabel.setText(model.getDate().toString());//Need to change the data type in event
+        timeLabel.setText(model.getTime().toString());//Need to change the data type in event
         locationLabel.setText(model.getLocation());
         descriptionLabel.setText(model.getDescription());
     }
-    
-    
+
 }
