@@ -70,34 +70,40 @@ public class FXMLDocumentController implements Initializable {
     
     public void setTableData(List<Event> eventList) {
 
-        voterData = FXCollections.observableArrayList();
+        eventList = FXCollections.observableArrayList();
 
-        voterList.forEach(s -> {
-            voterData.add(s);
+        eventList.forEach(s -> {
+            eventList.add(s);
         });
 
-        tableView.setItems(voterData);
-        tableView.refresh();
+        eventTable.setItems(eventList);
+        eventTable.refresh();
     }
 
     
-    public void initialize(URL url, ResourceBundle rb) {
+    public void initialize(URL url, ResourceBundle rb, Event model) {
         
         EntityManager myManager = (EntityManager) Persistence.createEntityManagerFactory("FoodFinderPU").createEntityManager();
         eventNameColumn.setCellValueFactory(new PropertyValueFactory<>("eventName"));
         
         
-        tableView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+        eventTable.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
         
+        
+        
+        
+    }
+
+    @FXML
+    void showDetails(MouseEvent event) {
         selectedModel = model;
         eventName.setText(model.getId().toString());
-        organizationName.setText(model.getFirstname());
-        dateLabel.setText(model.getLastname());
-        timeLabel.setText(model.getPoliticalparty());
-        locationLabel.setText(model.getLastname());
-        descriptionLabel.setText(model.getPoliticalparty());
-        
-        
-    }    
+        organizationName.setText(model.getOrganizationname());
+        dateLabel.setText(model.getDate());//Need to change the data type in event
+        timeLabel.setText(model.getTime());//Need to change the data type in event
+        locationLabel.setText(model.getLocation());
+        descriptionLabel.setText(model.getDescription());
+    }
+    
     
 }
