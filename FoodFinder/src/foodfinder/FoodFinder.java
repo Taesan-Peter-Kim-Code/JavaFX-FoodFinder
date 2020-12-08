@@ -19,7 +19,7 @@ public class FoodFinder extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("FreeFoodMainView.fxml"));
+        Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("view/FreeFoodMainView.fxml"));
         
         Scene scene = new Scene(root);
         
