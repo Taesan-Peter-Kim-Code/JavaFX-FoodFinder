@@ -10,6 +10,7 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -28,6 +29,7 @@ import model.Event;
 /**
  *
  * @author taesankim
+ * @author haydenlong
  */
 public class FXMLDocumentController implements Initializable {
 
@@ -57,6 +59,8 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private Label descriptionLabel;
+    
+    private ObservableList<Event> eventData;
 
     @FXML
     void saveEventBtn(ActionEvent event) {
@@ -70,13 +74,13 @@ public class FXMLDocumentController implements Initializable {
 
     public void setTableData(List<Event> eventList) {
 
-        eventList = FXCollections.observableArrayList();
+        eventData = FXCollections.observableArrayList();
 
         eventList.forEach(s -> {
-            eventList.add(s);
+            eventData.add(s);
         });
 
-        eventTable.setItems(eventList);
+        eventTable.setItems(eventData);
         eventTable.refresh();
     }
 
@@ -91,7 +95,7 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     void showDetails(MouseEvent event, Event model) {
-        selectedModel = model;
+        Event selectedModel = model;
         eventName.setText(model.getId().toString());
         organizationName.setText(model.getOrganizationname());
         dateLabel.setText(model.getDate().toString());//Need to change the data type in event
