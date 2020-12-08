@@ -6,12 +6,24 @@
 package controller;
 
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
+import javax.persistence.EntityManager;
+import javax.persistence.Persistence;
+import javax.persistence.Query;
+import model.User;
 
 /**
  * FXML Controller class
@@ -30,13 +42,119 @@ public class LoginPageViewController implements Initializable {
     private PasswordField pwTextField;
     @FXML
     private TextField emailTextField;
+    @FXML
+    private Button registerBtn;
+    @FXML
+    private Button loginBtn;
+    
+    private EntityManager manager;
+    
+    public TextField getEmailField() {
+        return emailTextField;
+    }
+    
+    public void setEmailField(TextField emailTextField) {
+        this.emailTextField = emailTextField;
+    }
+    
+    public TextField getPWField() {
+        return pwTextField;
+    }
+    
+    public void setPWField(PasswordField passwordField) {
+        this.pwTextField = pwTextField;
+    }
+    public Button getRegisterButton()
+    {
+        return registerBtn;
+    }
 
+    public void setRegisterButton(Button registerBtn)
+    {
+        this.registerBtn = registerBtn;
+    }
+
+    public Button getSubmitButton()
+    {
+        return loginBtn;
+    }
+
+    public void setSubmitButton(Button loginBtn)
+    {
+        this.loginBtn = loginBtn;
+    }
+    
+    public EntityManager getManager()
+    {
+        return manager;
+    }
+
+    public void setManager(EntityManager manager)
+    {
+        this.manager = manager;
+    }
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+       
     }    
+    
+    @FXML
+    private void registerAction(ActionEvent event)
+    {
+        try
+        {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/RegisterPageView.fxml"));
+            Parent registerView = loader.load();
+
+            Scene registerScene = new Scene(registerView);
+            Scene currentScene = ((Node)event.getSource()).getScene();
+  
+            Stage stage = (Stage) currentScene.getWindow();
+            stage.setScene(registerScene);
+            stage.show();
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+    }
+    
+    @FXML
+    private void submitLogin(ActionEvent event)
+    {
+        
+        User user = searchByEmailAndPassword(getEmailField().getText(), getPWField().getText());
+
+        if(user != null)
+        {
+            
+        }
+    }
+    
+    private User searchByEmailAndPassword(String email, String password)
+    {
+        Query query = getManager().createNamedQuery("User.findByEmailAndPassword");
+        query.setParameter("email", email);
+        query.setParameter("password", password);
+        
+        List<User> users = query.getResultList();
+        
+        if(users.size() < 1)
+        {
+            return null;
+        }
+        else if(users.size() > 1)
+        {
+            return null;
+        }
+        else
+        {
+            return null;
+        }
+        
+    } 
     
 }

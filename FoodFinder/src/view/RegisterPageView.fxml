@@ -7,7 +7,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="403.0" prefWidth="350.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.RegisterPageViewController">
    <children>
       <Label layoutX="83.0" layoutY="37.0" text="Registration Page">
@@ -26,6 +25,6 @@
       <PasswordField fx:id="pwTextField" layoutX="145.0" layoutY="248.0" />
       <PasswordField fx:id="cPWTextField" layoutX="145.0" layoutY="286.0" />
       <Button fx:id="registerBtn" layoutX="163.0" layoutY="344.0" mnemonicParsing="false" text="Register" />
-      <Button fx:id="backBtn" layoutX="260.0" layoutY="344.0" mnemonicParsing="false" text="Back" />
+      <Button fx:id="backBtn" layoutX="260.0" layoutY="344.0" mnemonicParsing="false" onAction="#backAction" text="Back" />
    </children>
 </AnchorPane>

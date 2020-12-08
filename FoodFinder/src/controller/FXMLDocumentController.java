@@ -85,6 +85,7 @@ public class FXMLDocumentController implements Initializable {
         eventTable.refresh();
     }
 
+    @Override
     public void initialize(URL url, ResourceBundle rb) {
 
         EntityManager myManager = (EntityManager) Persistence.createEntityManagerFactory("FoodFinderPU").createEntityManager();
@@ -93,7 +94,7 @@ public class FXMLDocumentController implements Initializable {
         eventTable.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
 
     }
-
+    
     @FXML
     void showDetails(MouseEvent event, Event model) {
         Event selectedModel = model;
@@ -103,6 +104,10 @@ public class FXMLDocumentController implements Initializable {
         timeLabel.setText(model.getTime().toString());
         locationLabel.setText(model.getLocation());
         descriptionLabel.setText(model.getDescription());
+    }
+
+    @FXML
+    private void showDetails(javafx.scene.input.MouseEvent event) {
     }
 
 }
