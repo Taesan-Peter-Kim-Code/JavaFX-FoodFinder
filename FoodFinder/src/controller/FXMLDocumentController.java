@@ -68,7 +68,7 @@ public class FXMLDocumentController implements Initializable {
 
     }
     
-    public void setTableData(List<Voter> voterList) {
+    public void setTableData(List<Event> eventList) {
 
         voterData = FXCollections.observableArrayList();
 
@@ -83,7 +83,7 @@ public class FXMLDocumentController implements Initializable {
     
     public void initialize(URL url, ResourceBundle rb) {
         
-        EntityManager myManager = (EntityManager) Persistence.createEntityManagerFactory("HaydenLongFXML_3QuizPU").createEntityManager();
+        EntityManager myManager = (EntityManager) Persistence.createEntityManagerFactory("FoodFinderPU").createEntityManager();
         eventNameColumn.setCellValueFactory(new PropertyValueFactory<>("eventName"));
         
         
