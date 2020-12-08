@@ -7,6 +7,7 @@ package controller;
 
 import java.awt.event.MouseEvent;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
@@ -74,7 +75,8 @@ public class FXMLDocumentController implements Initializable {
 
     public void setTableData(List<Event> eventList) {
 
-        eventData = FXCollections.observableArrayList();
+        //eventData = FXCollections.observableArrayList();
+        eventData = getTableData();
 
         eventList.forEach(s -> {
             eventData.add(s);
@@ -102,6 +104,16 @@ public class FXMLDocumentController implements Initializable {
         timeLabel.setText(model.getTime().toString());//Need to change the data type in event
         locationLabel.setText(model.getLocation());
         descriptionLabel.setText(model.getDescription());
+    }
+    
+    private ObservableList getTableData(Event model) {
+        List list = new ArrayList();
+        
+        list.add(model.getEventname());
+        
+        ObservableList eventData = FXCollections.observableList(list);
+        
+        return eventData;
     }
 
 }
