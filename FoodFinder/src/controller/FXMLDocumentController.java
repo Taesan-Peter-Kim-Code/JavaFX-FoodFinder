@@ -98,8 +98,8 @@ public class FXMLDocumentController implements Initializable {
         Event selectedModel = model;
         eventName.setText(model.getId().toString());
         organizationName.setText(model.getOrganizationname());
-        dateLabel.setText(model.getDate().toString());//Need to change the data type in event
-        timeLabel.setText(model.getTime().toString());//Need to change the data type in event
+        dateLabel.setText(model.getDate().toString());
+        timeLabel.setText(model.getTime().toString());
         locationLabel.setText(model.getLocation());
         descriptionLabel.setText(model.getDescription());
     }
