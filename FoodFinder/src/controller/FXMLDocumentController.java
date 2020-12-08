@@ -20,6 +20,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
+import javafx.scene.Cursor;
 import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.GridPane;
 import javax.persistence.EntityManager;
