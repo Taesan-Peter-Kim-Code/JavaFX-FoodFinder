@@ -81,7 +81,7 @@ public class FXMLDocumentController implements Initializable {
     }
 
     
-    public void initialize(URL url, ResourceBundle rb, Event model) {
+    public void initialize(URL url, ResourceBundle rb) {
         
         EntityManager myManager = (EntityManager) Persistence.createEntityManagerFactory("FoodFinderPU").createEntityManager();
         eventNameColumn.setCellValueFactory(new PropertyValueFactory<>("eventName"));
@@ -94,8 +94,8 @@ public class FXMLDocumentController implements Initializable {
         
     }
 
-    @FXML
-    void showDetails(MouseEvent event) {
+@FXML
+    void showDetails(MouseEvent event, Event model) {
         selectedModel = model;
         eventName.setText(model.getId().toString());
         organizationName.setText(model.getOrganizationname());
