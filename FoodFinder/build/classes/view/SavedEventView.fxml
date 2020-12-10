@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" fx:id="mainAnchor" prefHeight="673.0" prefWidth="722.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.SaveController">
+   <children>
+      <Button fx:id="logOutButton" layoutX="439.0" layoutY="79.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#showView" prefHeight="50.0" prefWidth="126.0" text="Log Out" textAlignment="CENTER" userData="/view/LoginPageView.fxml" />
+      <Button fx:id="myEventsButton" layoutX="283.0" layoutY="79.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#showView" prefHeight="50.0" prefWidth="155.0" text="My Events" textAlignment="CENTER" userData="/view/save.fxml" />
+      <Button fx:id="homeButton" layoutX="156.0" layoutY="79.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#showView" prefHeight="50.0" prefWidth="126.0" text="Home" textAlignment="CENTER" userData="/view/FreeFoodMainView.fxml" />
+      <Label layoutX="257.0" layoutY="20.0" text="Saved Events" textAlignment="CENTER">
+         <font>
+            <Font name="Century Gothic" size="36.0" />
+         </font>
+      </Label>
+      <AnchorPane layoutX="19.0" layoutY="158.0" prefHeight="442.0" prefWidth="682.0">
+         <children>
+            <ScrollPane prefHeight="442.0" prefWidth="682.0">
+               <content>
+                  <TableView prefHeight="442.0" prefWidth="1068.0">
+                    <columns>
+                      <TableColumn prefWidth="161.0" text="Event Name" />
+                      <TableColumn prefWidth="246.0" text="Organization Name" />
+                        <TableColumn minWidth="5.0" prefWidth="69.0" text="Date" />
+                        <TableColumn prefWidth="70.0" text="Time" />
+                        <TableColumn prefWidth="120.0" text="Location" />
+                        <TableColumn prefWidth="401.0" text="Description" />
+                    </columns>
+                  </TableView>
+               </content>
+            </ScrollPane>
+         </children>
+      </AnchorPane>
+      <Button fx:id="deleteEventButton" layoutX="532.0" layoutY="608.0" mnemonicParsing="false" onAction="#deleteEvent" prefHeight="51.0" prefWidth="169.0" text="Delete Event" textAlignment="CENTER" />
+   </children>
+</AnchorPane>

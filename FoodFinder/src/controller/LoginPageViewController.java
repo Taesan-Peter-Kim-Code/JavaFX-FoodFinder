@@ -49,6 +49,7 @@ public class LoginPageViewController implements Initializable {
     
     private EntityManager manager;
     
+    
     public TextField getEmailField() {
         return emailTextField;
     }
@@ -93,27 +94,30 @@ public class LoginPageViewController implements Initializable {
     {
         this.manager = manager;
     }
+    
+    
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-       
+        setManager((EntityManager) Persistence.createEntityManagerFactory("FoodFinderPU").createEntityManager());
     }    
     
     @FXML
-    private void registerAction(ActionEvent event)
+    private void toRegister(ActionEvent event)
     {
         try
         {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/RegisterPageView.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/RegisterPageView.fxml"));
             Parent registerView = loader.load();
 
-            Scene registerScene = new Scene(registerView);
+            
+            Scene registerPage = new Scene(registerView);
             Scene currentScene = ((Node)event.getSource()).getScene();
-  
+
             Stage stage = (Stage) currentScene.getWindow();
-            stage.setScene(registerScene);
+            stage.setScene(registerPage);
             stage.show();
         }
         catch(Exception e)
@@ -123,14 +127,37 @@ public class LoginPageViewController implements Initializable {
     }
     
     @FXML
-    private void submitLogin(ActionEvent event)
+    private void toLogin(ActionEvent event)
     {
         
         User user = searchByEmailAndPassword(getEmailField().getText(), getPWField().getText());
 
         if(user != null)
         {
+            login(user, event);
+        }
+    }
+    
+    private void login(User user, ActionEvent event)
+    {
+        try
+        {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/FreeFoodMainView.fxml"));
+            Parent mainView = loader.load();
+
+            Scene mainScene = new Scene(mainView);
+            Scene currentScene = ((Node)event.getSource()).getScene();
             
+            FreeFoodMainViewController controller = loader.getController();
+            controller.setActiveUser(user);
+
+            Stage stage = (Stage) currentScene.getWindow();
+            stage.setScene(mainScene);
+            stage.show();
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
         }
     }
     
@@ -152,7 +179,7 @@ public class LoginPageViewController implements Initializable {
         }
         else
         {
-            return null;
+            return users.get(0);
         }
         
     } 
