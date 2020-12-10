@@ -20,16 +20,16 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author taesankim
  */
 @Entity
-@Table(name = "USER")
+@Table(name = "USERMODEL")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "User.findAll", query = "SELECT u FROM User u")
-    , @NamedQuery(name = "User.findById", query = "SELECT u FROM User u WHERE u.id = :id")
-    , @NamedQuery(name = "User.findByFirstname", query = "SELECT u FROM User u WHERE u.firstname = :firstname")
-    , @NamedQuery(name = "User.findByLastname", query = "SELECT u FROM User u WHERE u.lastname = :lastname")
-    , @NamedQuery(name = "User.findByEmail", query = "SELECT u FROM User u WHERE u.email = :email")
-    , @NamedQuery(name = "User.findByPassword", query = "SELECT u FROM User u WHERE u.password = :password")})
-public class User implements Serializable {
+    @NamedQuery(name = "Usermodel.findAll", query = "SELECT u FROM Usermodel u")
+    , @NamedQuery(name = "Usermodel.findById", query = "SELECT u FROM Usermodel u WHERE u.id = :id")
+    , @NamedQuery(name = "Usermodel.findByFirstname", query = "SELECT u FROM Usermodel u WHERE u.firstname = :firstname")
+    , @NamedQuery(name = "Usermodel.findByLastname", query = "SELECT u FROM Usermodel u WHERE u.lastname = :lastname")
+    , @NamedQuery(name = "Usermodel.findByEmail", query = "SELECT u FROM Usermodel u WHERE u.email = :email")
+    , @NamedQuery(name = "Usermodel.findByPassword", query = "SELECT u FROM Usermodel u WHERE u.password = :password")})
+public class Usermodel implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -45,10 +45,10 @@ public class User implements Serializable {
     @Column(name = "PASSWORD")
     private String password;
 
-    public User() {
+    public Usermodel() {
     }
 
-    public User(Integer id) {
+    public Usermodel(Integer id) {
         this.id = id;
     }
 
@@ -102,10 +102,10 @@ public class User implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof User)) {
+        if (!(object instanceof Usermodel)) {
             return false;
         }
-        User other = (User) object;
+        Usermodel other = (Usermodel) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -114,7 +114,7 @@ public class User implements Serializable {
 
     @Override
     public String toString() {
-        return "model.User[ id=" + id + " ]";
+        return "model.Usermodel[ id=" + id + " ]";
     }
     
 }

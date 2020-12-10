@@ -140,7 +140,7 @@ public class Event implements Serializable {
 
     @Override
     public String toString() {
-        return "model.Event_1[ id=" + id + " ]";
+        return "model.Event[ id=" + id + " ]";
     }
     
 }

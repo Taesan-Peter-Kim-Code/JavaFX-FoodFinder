@@ -21,7 +21,7 @@ import javafx.stage.Stage;
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
 import model.Event;
-import model.User;
+import model.Usermodel;
 
 public class FreeFoodMainViewController {
 
@@ -67,18 +67,18 @@ public class FreeFoodMainViewController {
     @FXML
     private Button homeButton;
     
-    private User activeUser;
+    private Usermodel activeUser;
 
     @FXML
     void scrollDirection(ActionEvent event) {
 
     }
-    public User getActiveUser()
+    public Usermodel getActiveUser()
     {
         return activeUser;
     }
 
-    public void setActiveUser(User activeUser)
+    public void setActiveUser(Usermodel activeUser)
     {
         this.activeUser = activeUser;
     }

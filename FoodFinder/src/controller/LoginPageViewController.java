@@ -23,7 +23,7 @@ import javafx.stage.Stage;
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
-import model.User;
+import model.Usermodel;
 
 /**
  * FXML Controller class
@@ -130,7 +130,7 @@ public class LoginPageViewController implements Initializable {
     private void toLogin(ActionEvent event)
     {
         
-        User user = searchByEmailAndPassword(getEmailField().getText(), getPWField().getText());
+        Usermodel user = searchByEmailAndPassword(getEmailField().getText(), getPWField().getText());
 
         if(user != null)
         {
@@ -138,7 +138,7 @@ public class LoginPageViewController implements Initializable {
         }
     }
     
-    private void login(User user, ActionEvent event)
+    private void login(Usermodel user, ActionEvent event)
     {
         try
         {
@@ -161,13 +161,13 @@ public class LoginPageViewController implements Initializable {
         }
     }
     
-    private User searchByEmailAndPassword(String email, String password)
+    private Usermodel searchByEmailAndPassword(String email, String password)
     {
-        Query query = getManager().createNamedQuery("User.findByEmailAndPassword");
+        Query query = getManager().createNamedQuery("Usermodel.findByEmailAndPassword");
         query.setParameter("email", email);
         query.setParameter("password", password);
         
-        List<User> users = query.getResultList();
+        List<Usermodel> users = query.getResultList();
         
         if(users.size() < 1)
         {
