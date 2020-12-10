@@ -53,8 +53,7 @@ public class Event implements Serializable {
     @Column(name = "EVENTNAME")
     private String eventname;
     @Column(name = "TIME")
-    @Temporal(TemporalType.TIME)
-    private Date time;
+    private String time;
 
     public Event() {
     }
@@ -111,11 +110,11 @@ public class Event implements Serializable {
         this.eventname = eventname;
     }
 
-    public Date getTime() {
+    public String getTime() {
         return time;
     }
 
-    public void setTime(Date time) {
+    public void setTime(String time) {
         this.time = time;
     }
 

@@ -5,7 +5,9 @@
  */
 package controller;
 
+import static com.sun.media.jfxmediaimpl.platform.PlatformManager.getManager;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -19,6 +21,10 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import javax.persistence.EntityManager;
+import javax.persistence.Persistence;
+import javax.persistence.Query;
+import model.User;
 
 /**
  * FXML Controller class
@@ -51,25 +57,48 @@ public class RegisterPageViewController implements Initializable {
     private Button registerBtn;
     @FXML
     private Button backBtn;
+    
+    private EntityManager manager;
+    private Label feedbackLabel;
 
-    public TextField getFirstNameField()
-    {
+    public TextField getFirstNameTextField() {
         return firstNameTextField;
     }
 
-    public void setFirstNameField(TextField firstNameField)
-    {
+    public void setFirstNameTextField(TextField firstNameTextField) {
         this.firstNameTextField = firstNameTextField;
     }
 
-    public TextField getLastNameField()
-    {
+    public TextField getLastNameTextField() {
         return lastNameTextField;
     }
 
-    public void setLastNameField(TextField lastNameField)
-    {
+    public void setLastNameTextField(TextField lastNameTextField) {
         this.lastNameTextField = lastNameTextField;
+    }
+
+    public TextField getEmailTextField() {
+        return emailTextField;
+    }
+
+    public void setEmailTextField(TextField emailTextField) {
+        this.emailTextField = emailTextField;
+    }
+
+    public PasswordField getPwTextField() {
+        return pwTextField;
+    }
+
+    public void setPwTextField(PasswordField pwTextField) {
+        this.pwTextField = pwTextField;
+    }
+
+    public PasswordField getcPWTextField() {
+        return cPWTextField;
+    }
+
+    public void setcPWTextField(PasswordField cPWTextField) {
+        this.cPWTextField = cPWTextField;
     }
     
     public Button getBackBtn()
@@ -92,19 +121,39 @@ public class RegisterPageViewController implements Initializable {
         this.registerBtn = registerBtn;
     }
     
+    public Label getFeedbackLabel()
+    {
+        return feedbackLabel;
+    }
+
+    public void setFeedbackLabel(Label feedbackLabel)
+    {
+        this.feedbackLabel = feedbackLabel;
+    }
+    
+    public EntityManager getManager()
+    {
+        return manager;
+    }
+
+    public void setManager(EntityManager manager)
+    {
+        this.manager = manager;
+    }
+    
     @FXML
-    private void backAction(ActionEvent event)
+    private void backAction(ActionEvent event) 
     {
         try
         {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/LoginPageView.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/LoginPageView.fxml"));
             Parent loginView = loader.load();
 
-            Scene loginScene = new Scene(loginView);
+            Scene loginPage = new Scene(loginView);
             Scene currentScene = ((Node)event.getSource()).getScene();
 
             Stage stage = (Stage) currentScene.getWindow();
-            stage.setScene(loginScene);
+            stage.setScene(loginPage);
             stage.show();
         }
         catch(Exception e)
@@ -113,12 +162,77 @@ public class RegisterPageViewController implements Initializable {
         }
     }
     
+    @FXML
+    private void toRegister(ActionEvent event) 
+    {
+        createUser(getFirstNameTextField().getText(),getLastNameTextField().getText(), getEmailTextField().getText(), getPwTextField().getText());
+    }
+    
+    private void createUser(String firstname, String lastname, String email, String password)
+    {
+        try
+        {
+            Query query = getManager().createNamedQuery("user.findAll");
+            List<User> users = query.getResultList();
+            int id = 1;
+            
+            if (!users.isEmpty())
+            {
+                if (getPwTextField().getText().equals(getcPWTextField().getText()))
+                {
+                    id = users.get(0).getId() + 1;
+                }
+            }
+            
+            User user = new User();
+            user.setId(id);
+            user.setFirstname(firstname);
+            user.setLastname(lastname);
+            user.setEmail(email);
+            user.setPassword(password);
+            
+            if (!searchUser(email)) 
+            {
+                getManager().getTransaction().begin();
+                
+                getManager().persist(user);
+                getManager().getTransaction().commit();
+            }
+            
+        } 
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+    }
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        setManager((EntityManager) Persistence.createEntityManagerFactory("FoodFinderPU").createEntityManager());
+    }
+
+    private boolean searchUser(String email) {
+        
+        boolean userFound = false;
+        
+        Query query = getManager().createNamedQuery("User.findByEmail");
+        query.setParameter("email", email);
+        List<User> users = query.getResultList();
+        
+        switch(users.size())
+        {
+            case 0:
+                getFeedbackLabel().setText("User created successfully!");
+                break;
+                
+            default:
+                getFeedbackLabel().setText("Email already exists");
+                userFound = true;
+                break;
+        }
+        return userFound;
     }
     
     
