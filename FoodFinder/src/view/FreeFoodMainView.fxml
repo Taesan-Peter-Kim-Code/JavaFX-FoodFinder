@@ -27,7 +27,11 @@
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" style="-fx-background-color: FFFFFF;">
                <children>
                   <ScrollBar onScroll="#scrollDirection" orientation="VERTICAL" prefHeight="526.0" prefWidth="14.0" />
+<<<<<<< HEAD
                   <TableView fx:id="eventTable" layoutX="14.0" prefHeight="526.0" prefWidth="114.0" style="-fx-background-color: f9f4ed;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+=======
+                  <TableView fx:id="eventTable" layoutX="14.0" onMouseClicked="#showDetails" prefHeight="526.0" prefWidth="114.0" style="-fx-background-color: f9f4ed;" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="1.0" >
+>>>>>>> d0dc4945fccd693cde65eb803cda3ac21117feaa
                     <columns>
                       <TableColumn fx:id="eventNameColumn" editable="false" prefWidth="113.0" sortable="false" text="Events" />
                     </columns>
