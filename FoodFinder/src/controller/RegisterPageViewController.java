@@ -24,7 +24,7 @@ import javafx.stage.Stage;
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
-import model.User;
+import model.Usermodel;
 
 /**
  * FXML Controller class
@@ -166,25 +166,26 @@ public class RegisterPageViewController implements Initializable {
     private void toRegister(ActionEvent event) 
     {
         createUser(getFirstNameTextField().getText(),getLastNameTextField().getText(), getEmailTextField().getText(), getPwTextField().getText());
+        // System.out.println("Taesafds");
     }
     
     private void createUser(String firstname, String lastname, String email, String password)
     {
         try
         {
-            Query query = getManager().createNamedQuery("User.findAll");
-            List<User> users = query.getResultList();
+            Query query = getManager().createNamedQuery("Usermodel.findAll");
+            List<Usermodel> users = query.getResultList();
             int id = 1;
             
             if (!users.isEmpty())
             {
                 if (getPwTextField().getText().equals(getcPWTextField().getText()))
                 {
-                    id = users.get(0).getId() + 1;
+                    id = users.size() + 1;
                 }
             }
             
-            User user = new User();
+            Usermodel user = new Usermodel();
             user.setId(id);
             user.setFirstname(firstname);
             user.setLastname(lastname);
@@ -217,23 +218,29 @@ public class RegisterPageViewController implements Initializable {
         
         boolean userFound = false;
         
-        Query query = getManager().createNamedQuery("User.findByEmail");
-        query.setParameter("email", email);
-        List<User> users = query.getResultList();
-        
-        switch(users.size())
+        try 
         {
-            case 0:
-                getFeedbackLabel().setText("User created successfully!");
-                break;
-                
-            default:
-                getFeedbackLabel().setText("Email already exists");
-                userFound = true;
-                break;
+            Query query = getManager().createNamedQuery("Usermodel.findByEmail");
+            query.setParameter("email", email);
+            Usermodel users = (Usermodel) query.getSingleResult();
+            userFound = true;
+            
+        } catch (Exception e) {
+            userFound = false;
         }
+//        
+//        switch(users.size())
+//        {
+//            case 0:
+//                getFeedbackLabel().setText("User created successfully!");
+//                break;
+//                
+//            default:
+//                getFeedbackLabel().setText("Email already exists");
+//                userFound = true;
+//                break;
+//       }
         return userFound;
     }
-    
-    
+     
 }
