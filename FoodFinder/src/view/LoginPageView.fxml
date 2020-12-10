@@ -7,26 +7,26 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="233.0" prefWidth="378.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.LoginPageViewController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="230.0" prefWidth="389.0" style="-fx-background-color: lightsalmon; -fx-border-color: black; -fx-border-width: 5;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.LoginPageViewController">
    <children>
-      <Label fx:id="loginPageLabel" layoutX="122.0" layoutY="40.0" text="Login Page">
+      <Label fx:id="loginPageLabel" layoutX="89.0" layoutY="33.0" style="-fx-font-weight: bold; -fx-font-family: Tahoma; -fx-font-size: 36;" text="Login Page">
          <font>
             <Font size="29.0" />
          </font>
       </Label>
-      <Label fx:id="userEmailLabel" layoutX="67.0" layoutY="106.0" text="User Email:">
+      <Label fx:id="userEmailLabel" layoutX="67.0" layoutY="106.0" style="-fx-font-weight: bold;" text="User Email:">
          <font>
             <Font size="15.0" />
          </font>
       </Label>
-      <Label fx:id="pwLabel" layoutX="71.0" layoutY="143.0" text="Password:">
+      <Label fx:id="pwLabel" layoutX="71.0" layoutY="143.0" style="-fx-font-weight: bold;" text="Password:">
          <font>
             <Font size="15.0" />
          </font>
       </Label>
       <PasswordField fx:id="pwTextField" layoutX="160.0" layoutY="140.0" promptText="Enter Your Password" />
       <TextField fx:id="emailTextField" layoutX="160.0" layoutY="103.0" promptText="Enter Your Email" />
-      <Button fx:id="registerBtn" layoutX="91.0" layoutY="180.0" mnemonicParsing="false" onAction="#toRegister" text="Register" />
-      <Button fx:id="loginBtn" layoutX="241.0" layoutY="180.0" mnemonicParsing="false" onAction="#toLogin" text="Login" />
+      <Button fx:id="registerBtn" layoutX="89.0" layoutY="177.0" mnemonicParsing="false" onAction="#toRegister" style="-fx-background-color: white; -fx-font-family: sans-serif; -fx-border-color: black;" text="Register" />
+      <Button fx:id="loginBtn" layoutX="247.0" layoutY="177.0" mnemonicParsing="false" onAction="#toLogin" style="-fx-background-color: white; -fx-font-family: sans-serif; -fx-border-color: black;" text="Login" />
    </children>
 </AnchorPane>
