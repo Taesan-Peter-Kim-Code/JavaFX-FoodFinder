@@ -61,10 +61,10 @@ public class SavedEventViewController {
 
     @FXML
     void initialize() {
-        assert myEventsButton != null : "fx:id=\"myEventsButton\" was not injected: check your FXML file 'save.fxml'.";
-        assert logOutButton != null : "fx:id=\"logOutButton\" was not injected: check your FXML file 'save.fxml'.";
-        assert deleteEventButton != null : "fx:id=\"deleteEventButton\" was not injected: check your FXML file 'save.fxml'.";
-        assert homeButton != null : "fx:id=\"homeButton\" was not injected: check your FXML file 'save.fxml'.";
+        assert myEventsButton != null : "fx:id=\"myEventsButton\" was not injected: check your FXML file 'SavedEventView.fxml'.";
+        assert logOutButton != null : "fx:id=\"logOutButton\" was not injected: check your FXML file 'SavedEventView.fxml'.";
+        assert deleteEventButton != null : "fx:id=\"deleteEventButton\" was not injected: check your FXML file 'SavedEventView.fxml'.";
+        assert homeButton != null : "fx:id=\"homeButton\" was not injected: check your FXML file 'SavedEventView.fxml'.";
 
     }
 

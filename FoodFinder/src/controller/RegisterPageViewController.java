@@ -172,7 +172,7 @@ public class RegisterPageViewController implements Initializable {
     {
         try
         {
-            Query query = getManager().createNamedQuery("user.findAll");
+            Query query = getManager().createNamedQuery("User.findAll");
             List<User> users = query.getResultList();
             int id = 1;
             
