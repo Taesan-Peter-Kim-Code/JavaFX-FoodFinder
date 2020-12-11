@@ -166,7 +166,7 @@ public class RegisterPageViewController implements Initializable {
     private void toRegister(ActionEvent event) 
     {
         createUser(getFirstNameTextField().getText(),getLastNameTextField().getText(), getEmailTextField().getText(), getPwTextField().getText());
-        // System.out.println("Taesafds");
+        System.out.println("Taesafds");
     }
     
     private void createUser(String firstname, String lastname, String email, String password)
