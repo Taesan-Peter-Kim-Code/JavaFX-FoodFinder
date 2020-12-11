@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="559.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.NewEventController">
+   <children>
+      <Label layoutX="216.0" layoutY="24.0" text="New Event">
+         <font>
+            <Font size="36.0" />
+         </font>
+      </Label>
+      <TextField fx:id="idField" layoutX="226.0" layoutY="95.0" />
+      <TextField fx:id="eventNameField" layoutX="226.0" layoutY="141.0" />
+      <TextField fx:id="organizationField" layoutX="226.0" layoutY="188.0" />
+      <TextField fx:id="dateField" layoutX="226.0" layoutY="233.0" />
+      <TextField fx:id="timeField" layoutX="226.0" layoutY="279.0" />
+      <TextArea fx:id="descriptionField" layoutX="182.0" layoutY="319.0" prefHeight="200.0" prefWidth="238.0" />
+      <Label layoutX="133.0" layoutY="99.0" text="ID:" />
+      <Label layoutX="133.0" layoutY="145.0" text="Event Name:" />
+      <Label layoutX="126.0" layoutY="283.0" text="Time:" />
+      <Label layoutX="85.0" layoutY="411.0" text="Description:" />
+      <Label layoutX="131.0" layoutY="192.0" text="Organization:" />
+      <Label layoutX="134.0" layoutY="237.0" text="Date:" />
+      <Button fx:id="saveButton" layoutX="482.0" layoutY="507.0" mnemonicParsing="false" onAction="#createEvent" text="Save" />
+   </children>
+</AnchorPane>
