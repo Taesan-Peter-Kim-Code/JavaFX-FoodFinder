@@ -1,5 +1,6 @@
 package controller;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -7,12 +8,17 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
@@ -115,6 +121,24 @@ public class FreeFoodMainViewController implements Initializable {
 
     void setActiveUser(Usermodel user) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    @FXML
+    void showView(ActionEvent event) throws IOException {
+        String view = (String) ((Node) event.getSource()).getUserData();
+        
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(view));
+        
+        Parent root = loader.load();
+        
+        Scene saveScene = new Scene(root);
+        
+        Scene currentScene = ((Node) event.getSource()).getScene();
+        
+        Stage stage = (Stage) currentScene.getWindow();
+        
+        stage.setScene(saveScene);
+        stage.show();
     }
 
 }
