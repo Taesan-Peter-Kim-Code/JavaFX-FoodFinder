@@ -36,6 +36,12 @@ import java.util.ArrayList;
 import javafx.scene.Node;
 import javafx.stage.Stage;
 
+/**
+ * AdminViewController
+ *
+ * @author haydenLong
+ */
+
 
 public class AdminViewController implements Initializable {
     
@@ -310,7 +316,7 @@ public class AdminViewController implements Initializable {
         }
         return id;
     }
-    
+    /*
      public void update(Event model) {
         try {
 
@@ -326,6 +332,7 @@ public class AdminViewController implements Initializable {
                 existingEvent.setOrganization(model.getOrganization());
                 existingEvent.setDate(model.getDate());
                 existingEvent.setTime(model.getTime());
+                existingEvent.setDescription(model.getDescription());
                 
                 // end transaction
                 myManager.getTransaction().commit();
@@ -337,6 +344,7 @@ public class AdminViewController implements Initializable {
         }
         
     }
+<<<<<<< HEAD
      
     Scene previousScene;
 
@@ -346,5 +354,40 @@ public class AdminViewController implements Initializable {
     }
 
      
+=======
+*/
+    /*
+    public void update(Event model) {
+        try {
+
+            Event existingEvent = myManager.find(Event.class, model.getId());
+
+            if (existingEvent != null) {
+                // begin transaction
+                myManager.getTransaction().begin();
+                
+                // update all atttributes
+                existingEvent.setId(model.getId());
+                existingEvent.setEventname(model.getEventname());
+                existingEvent.setOrganization(model.getOrganization());
+                existingEvent.setDate(model.getDate());
+                existingEvent.setTime(model.getTime());
+                existingEvent.setDescription(model.getDescription());
+                
+                // end transaction
+                myManager.getTransaction().commit();
+                
+                System.out.println(existingEvent.toString() + " is updated");
+            }
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+        
+    }
+*/
+    
+    
+  
+>>>>>>> 7ba6af66884d562f22fc771e9e2f59ee3407e5f0
 }
 
