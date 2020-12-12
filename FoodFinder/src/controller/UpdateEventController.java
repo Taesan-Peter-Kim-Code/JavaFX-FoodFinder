@@ -18,6 +18,12 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import model.Event;
 
+/**
+ * UpdateEventController
+ *
+ * @author haydenLong
+ */
+
 public class UpdateEventController {
     
     @FXML

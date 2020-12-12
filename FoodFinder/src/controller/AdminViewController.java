@@ -36,6 +36,12 @@ import java.util.ArrayList;
 import javafx.scene.Node;
 import javafx.stage.Stage;
 
+/**
+ * AdminViewController
+ *
+ * @author haydenLong
+ */
+
 
 public class AdminViewController implements Initializable {
     

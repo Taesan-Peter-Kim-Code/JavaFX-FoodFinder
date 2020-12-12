@@ -26,6 +26,12 @@ import javax.persistence.Query;
 import model.Event;
 import model.SavedEvent;
 
+/**
+ * SavedEventViewController
+ *
+ * @author haydenLong
+ */
+
 public class SavedEventViewController implements Initializable{
 
     @FXML
@@ -69,9 +75,14 @@ public class SavedEventViewController implements Initializable{
 
     @FXML
     private TableColumn<Event, String> descriptionColumn;
+    
+    @FXML
+    private Button readButton;
 
     
     private EntityManager myManager;
+    
+    private List<SavedEvent> savedEventList;
 
     
     private ObservableList <Event> eventData;
@@ -94,6 +105,13 @@ public class SavedEventViewController implements Initializable{
        
         
     }
+    
+    @FXML
+    void readSavedEvents(ActionEvent event) {
+        savedEventList = readAll();
+        setTableData(savedEventList);
+    }
+
 
     @FXML
     void showView(ActionEvent event) throws IOException {
@@ -143,4 +161,11 @@ public class SavedEventViewController implements Initializable{
         savedEventView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
 
 }
+    public List<SavedEvent> readAll(){
+        savedEventView.refresh();
+        Query query = myManager.createNamedQuery("SavedEvent.findAll");
+        List<SavedEvent> events = query.getResultList();
+        
+        return events;
+    }
 }

@@ -7,7 +7,7 @@ package controller;
 
 /**
  *
- * @author hayde
+ * @author haydenLong
  */
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
