@@ -46,12 +46,14 @@ public class NewEventController {
     @FXML
     private Button saveButton;
     
-    private AdminViewController mainAdminController;
+   // private AdminViewController mainAdminController;
     
 
     @FXML
     void createEvent(ActionEvent event) throws IOException{
         System.out.println("Creating entry");
+        
+        Event newEvent = new Event();
 
         
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/AdminView.fxml"));
@@ -68,9 +70,17 @@ public class NewEventController {
         if (previousScene != null) {
             stage.setScene(previousScene);
         }
+        System.out.println("Dude");
         
-        createEntry();
+        int id = adminController.createID();
         
+        System.out.println("Before issues");
+        System.out.println(id);
+        
+       newEvent = createEntry(id);
+        
+          
+        adminController.create(newEvent);
         
         
         /*
@@ -109,15 +119,16 @@ public class NewEventController {
     }
 
     
-    public void createEntry() throws IOException {
+    public Event createEntry(int id) throws IOException {
         
-        AdminViewController mainAdminController = this.mainAdminController;
+
         
-        int id = mainAdminController.createID();
+        //AdminViewController mainAdminController = this.mainAdminController;
+        
         
         Event newEvent = new Event();
+      
         
-       
         newEvent.setId(id);
         
 
@@ -127,15 +138,16 @@ public class NewEventController {
         String time = timeField.getText();
         String description = descriptionField.getText();
         
+        newEvent.setId(id);        
         newEvent.setEventname(eventName);
         newEvent.setOrganization(organization);
         newEvent.setDate(date);
         newEvent.setTime(time);
         newEvent.setDescription(description);
                
-        mainAdminController.create(newEvent);
+       
         
-        
+        return newEvent;
     }
 
     public TextField getIdField() {

@@ -32,6 +32,7 @@ import javax.persistence.Query;
 import model.Event;
 import controller.NewEventController;
 import java.io.IOException;
+import java.util.ArrayList;
 import javafx.scene.Node;
 import javafx.stage.Stage;
 
@@ -267,7 +268,14 @@ public class AdminViewController implements Initializable {
         
         int id = 0;
         
-        for(Event e: eventData){
+        List <Event> eventList;
+        
+        eventList = readAll();
+        
+        for(Event e: eventList){
+            
+            id++;
+            
             if(id == e.getId()){
                 id++;
             }

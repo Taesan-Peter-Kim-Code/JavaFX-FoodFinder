@@ -150,7 +150,7 @@ public class LoginPageViewController implements Initializable {
             
             FreeFoodMainViewController controller = loader.getController();
             controller.setActiveUser(user);
-
+            
             Stage stage = (Stage) currentScene.getWindow();
             stage.setScene(mainScene);
             stage.show();
