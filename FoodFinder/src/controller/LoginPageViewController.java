@@ -153,7 +153,8 @@ public class LoginPageViewController implements Initializable {
             Scene mainScene = new Scene(mainView);
             Scene currentScene = ((Node)event.getSource()).getScene();
             
-            FreeFoodMainViewController controller = loader.getController();
+            AdminViewController adminController = loader.getController();
+            
                
             Stage stage = (Stage) currentScene.getWindow();
             stage.setScene(mainScene);
