@@ -6,16 +6,23 @@
 package controller;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import javax.persistence.EntityManager;
+import javax.persistence.Persistence;
 import model.Event;
 
 /**
@@ -24,7 +31,7 @@ import model.Event;
  * @author haydenLong
  */
 
-public class UpdateEventController {
+public class UpdateEventController implements Initializable{
     
     @FXML
     private TextField idField;
@@ -46,6 +53,8 @@ public class UpdateEventController {
 
     @FXML
     private Button updateButton;
+    
+    private EntityManager myManager;
     
     
 
@@ -69,9 +78,30 @@ public class UpdateEventController {
         
         Event existingEvent = updateEvent();
         
-        adminController.update(existingEvent);
+        update(existingEvent);
    
     }
+
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+
+        myManager = (EntityManager) Persistence.createEntityManagerFactory("FoodFinderPU").createEntityManager();
+        
+        /*
+        
+        idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
+        eventNameColumn.setCellValueFactory(new PropertyValueFactory<>("eventname"));
+        orgColumn.setCellValueFactory(new PropertyValueFactory<>("organization"));
+        dateColumn.setCellValueFactory(new PropertyValueFactory<>("date"));
+        timeColumn.setCellValueFactory(new PropertyValueFactory<>("time"));
+        desColumn.setCellValueFactory(new PropertyValueFactory<>("description"));
+        
+        
+        eventView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+*/
+        
+
+}
     
     Scene previousScene;
 
@@ -119,6 +149,36 @@ public class UpdateEventController {
         int id = existingEvent.getId();
   
     }
+    
+    public void update(Event model) {
+        try {
+
+            Event existingEvent = myManager.find(Event.class, model.getId());
+
+            if (existingEvent != null) {
+                // begin transaction
+                myManager.getTransaction().begin();
+                
+                // update all atttributes
+                existingEvent.setId(model.getId());
+                existingEvent.setEventname(model.getEventname());
+                existingEvent.setOrganization(model.getOrganization());
+                existingEvent.setDate(model.getDate());
+                existingEvent.setTime(model.getTime());
+                existingEvent.setDescription(model.getDescription());
+                
+                // end transaction
+                myManager.getTransaction().commit();
+                
+                System.out.println(existingEvent.toString() + " is updated");
+            }
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+        
+    }
+    
+
     
 
 }
