@@ -5,7 +5,10 @@
         <group>
             <file>file:/Users/taesankim/NetBeansProjects/JavaFX-FoodFinder/FoodFinder/src/foodfinder/FoodFinder.java</file>
             <file>file:/Users/taesankim/NetBeansProjects/JavaFX-FoodFinder/FoodFinder/src/controller/RegisterPageViewController.java</file>
-            <file>file:/Users/taesankim/NetBeansProjects/JavaFX-FoodFinder/FoodFinder/src/controller/AdminViewController.java</file>
+            <file>file:/Users/taesankim/NetBeansProjects/JavaFX-FoodFinder/FoodFinder/src/model/Usermodel.java</file>
+            <file>file:/Users/taesankim/NetBeansProjects/JavaFX-FoodFinder/FoodFinder/src/controller/UpdateEventController.java</file>
+            <file>file:/Users/taesankim/NetBeansProjects/JavaFX-FoodFinder/FoodFinder/src/controller/NewEventController.java</file>
+            <file>file:/Users/taesankim/NetBeansProjects/JavaFX-FoodFinder/FoodFinder/src/model/Savedevent.java</file>
             <file>file:/Users/taesankim/NetBeansProjects/JavaFX-FoodFinder/FoodFinder/src/controller/LoginPageViewController.java</file>
         </group>
     </open-files>
