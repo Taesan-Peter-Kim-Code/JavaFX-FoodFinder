@@ -39,7 +39,7 @@ import javafx.stage.Stage;
 
 public class AdminViewController implements Initializable {
     
-     @FXML
+    @FXML
     private TableView<Event> eventView;
 
     @FXML
@@ -337,9 +337,14 @@ public class AdminViewController implements Initializable {
         }
         
     }
+     
+    Scene previousScene;
 
-    
-    
-  
+    public void setPreviousScene(Scene scene) {
+        previousScene = scene;
+
+    }
+
+     
 }
 

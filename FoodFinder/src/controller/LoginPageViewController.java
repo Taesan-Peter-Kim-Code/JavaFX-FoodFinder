@@ -153,8 +153,8 @@ public class LoginPageViewController implements Initializable {
             Scene mainScene = new Scene(mainView);
             Scene currentScene = ((Node)event.getSource()).getScene();
             
-            AdminViewController adminController = loader.getController();
-            
+//            AdminViewController adminController = loader.getController();
+//            adminController.setPreviousScene(currentScene);
                
             Stage stage = (Stage) currentScene.getWindow();
             stage.setScene(mainScene);
@@ -176,7 +176,8 @@ public class LoginPageViewController implements Initializable {
             Scene mainScene = new Scene(mainView);
             Scene currentScene = ((Node)event.getSource()).getScene();
             
-            FreeFoodMainViewController controller = loader.getController();
+//            FreeFoodMainViewController mainController = loader.getController();
+//            mainController.setPreviousScene(currentScene);
                
             Stage stage = (Stage) currentScene.getWindow();
             stage.setScene(mainScene);
@@ -199,10 +200,12 @@ public class LoginPageViewController implements Initializable {
         
         if(users.size() < 1)
         {
+            System.out.println("No user exists");
             return null;
         }
         else if(users.size() > 1)
         {
+            System.out.println("fsda");
             return null;
         }
         else
