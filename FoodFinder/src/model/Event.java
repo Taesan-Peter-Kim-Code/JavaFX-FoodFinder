@@ -6,7 +6,6 @@
 package model;
 
 import java.io.Serializable;
-import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,8 +13,6 @@ import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -28,33 +25,31 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "Event.findAll", query = "SELECT e FROM Event e")
     , @NamedQuery(name = "Event.findById", query = "SELECT e FROM Event e WHERE e.id = :id")
-    , @NamedQuery(name = "Event.findByLocation", query = "SELECT e FROM Event e WHERE e.location = :location")
-    , @NamedQuery(name = "Event.findByDate", query = "SELECT e FROM Event e WHERE e.date = :date")
-    , @NamedQuery(name = "Event.findByOrganizationname", query = "SELECT e FROM Event e WHERE e.organization = :organization")
-    , @NamedQuery(name = "Event.findByDescription", query = "SELECT e FROM Event e WHERE e.description = :description")
     , @NamedQuery(name = "Event.findByEventname", query = "SELECT e FROM Event e WHERE e.eventname = :eventname")
-    , @NamedQuery(name = "Event.findByTime", query = "SELECT e FROM Event e WHERE e.time = :time")})
+    , @NamedQuery(name = "Event.findByOrganization", query = "SELECT e FROM Event e WHERE e.organization = :organization")
+    , @NamedQuery(name = "Event.findByDate", query = "SELECT e FROM Event e WHERE e.date = :date")
+    , @NamedQuery(name = "Event.findByTime", query = "SELECT e FROM Event e WHERE e.time = :time")
+    , @NamedQuery(name = "Event.findByLocation", query = "SELECT e FROM Event e WHERE e.location = :location")
+    , @NamedQuery(name = "Event.findByDescription", query = "SELECT e FROM Event e WHERE e.description = :description")})
 public class Event implements Serializable {
-
-
 
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
     @Column(name = "ID")
     private Integer id;
-    @Column(name = "LOCATION")
-    private String location;
-    @Column(name = "ORGANIZATION")
-    private String organization;
-    @Column(name = "DESCRIPTION")
-    private String description;
     @Column(name = "EVENTNAME")
     private String eventname;
-    @Column(name = "TIME")
-    private String time;
+    @Column(name = "ORGANIZATION")
+    private String organization;
     @Column(name = "DATE")
     private String date;
+    @Column(name = "TIME")
+    private String time;
+    @Column(name = "LOCATION")
+    private String location;
+    @Column(name = "DESCRIPTION")
+    private String description;
 
     public Event() {
     }
@@ -71,14 +66,13 @@ public class Event implements Serializable {
         this.id = id;
     }
 
-    public String getLocation() {
-        return location;
+    public String getEventname() {
+        return eventname;
     }
 
-    public void setLocation(String location) {
-        this.location = location;
+    public void setEventname(String eventname) {
+        this.eventname = eventname;
     }
-
 
     public String getOrganization() {
         return organization;
@@ -88,20 +82,12 @@ public class Event implements Serializable {
         this.organization = organization;
     }
 
-    public String getDescription() {
-        return description;
+    public String getDate() {
+        return date;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public String getEventname() {
-        return eventname;
-    }
-
-    public void setEventname(String eventname) {
-        this.eventname = eventname;
+    public void setDate(String date) {
+        this.date = date;
     }
 
     public String getTime() {
@@ -110,6 +96,22 @@ public class Event implements Serializable {
 
     public void setTime(String time) {
         this.time = time;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     @Override
@@ -135,14 +137,6 @@ public class Event implements Serializable {
     @Override
     public String toString() {
         return "model.Event[ id=" + id + " ]";
-    }
-
-    public String getDate() {
-        return date;
-    }
-
-    public void setDate(String date) {
-        this.date = date;
     }
     
 }
