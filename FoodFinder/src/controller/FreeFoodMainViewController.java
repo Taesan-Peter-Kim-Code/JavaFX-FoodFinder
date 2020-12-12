@@ -119,8 +119,11 @@ public class FreeFoodMainViewController implements Initializable {
         return events;
     }
 
-    void setActiveUser(Usermodel user) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    Scene previousScene;
+
+    public void setPreviousScene(Scene scene) {
+        previousScene = scene;
+
     }
     
     @FXML

@@ -59,7 +59,6 @@ public class RegisterPageViewController implements Initializable {
     private Button backBtn;
     
     private EntityManager manager;
-    private Label feedbackLabel;
 
     public TextField getFirstNameTextField() {
         return firstNameTextField;
@@ -121,16 +120,6 @@ public class RegisterPageViewController implements Initializable {
         this.registerBtn = registerBtn;
     }
     
-    public Label getFeedbackLabel()
-    {
-        return feedbackLabel;
-    }
-
-    public void setFeedbackLabel(Label feedbackLabel)
-    {
-        this.feedbackLabel = feedbackLabel;
-    }
-    
     public EntityManager getManager()
     {
         return manager;
@@ -166,7 +155,7 @@ public class RegisterPageViewController implements Initializable {
     private void toRegister(ActionEvent event) 
     {
         createUser(getFirstNameTextField().getText(),getLastNameTextField().getText(), getEmailTextField().getText(), getPwTextField().getText());
-        System.out.println("Taesafds");
+        
     }
     
     private void createUser(String firstname, String lastname, String email, String password)
@@ -224,22 +213,13 @@ public class RegisterPageViewController implements Initializable {
             query.setParameter("email", email);
             Usermodel users = (Usermodel) query.getSingleResult();
             userFound = true;
+            System.out.println("Registration Failed");
+            
             
         } catch (Exception e) {
             userFound = false;
+            System.out.println("Registration Succeed");
         }
-//        
-//        switch(users.size())
-//        {
-//            case 0:
-//                getFeedbackLabel().setText("User created successfully!");
-//                break;
-//                
-//            default:
-//                getFeedbackLabel().setText("Email already exists");
-//                userFound = true;
-//                break;
-//       }
         return userFound;
     }
      
