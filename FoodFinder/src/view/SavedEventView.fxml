@@ -27,15 +27,16 @@
          </font>
       </Label>
       <Button fx:id="deleteEventButton" layoutX="442.0" layoutY="571.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#deleteEvent" prefHeight="40.0" prefWidth="120.0" style="-fx-background-color: white; -fx-border-color: black; -fx-background-radius: 10; -fx-border-radius: 10; -fx-background-insets: 0; -fx-font-size: 15; -fx-font-family: sans-serif;" text="Delete Event" textAlignment="CENTER" />
-      <TableView fx:id="savedEventView" layoutX="213.0" layoutY="236.0" prefHeight="200.0" prefWidth="643.0">
+      <TableView fx:id="savedEventView" layoutX="119.0" layoutY="184.0" prefHeight="317.0" prefWidth="643.0">
         <columns>
           <TableColumn fx:id="idColumn" prefWidth="75.0" text="ID" />
           <TableColumn fx:id="eventNameColumn" prefWidth="75.0" text="Event Name" />
             <TableColumn fx:id="organizationColumn" prefWidth="75.0" text="Org" />
             <TableColumn fx:id="dateColumn" prefWidth="75.0" text="Date" />
             <TableColumn fx:id="timeColumn" prefWidth="75.0" text="Time" />
-            <TableColumn fx:id="descriptionColumn" prefWidth="75.0" text="Description" />
+            <TableColumn fx:id="descriptionColumn" prefWidth="266.0" text="Description" />
         </columns>
       </TableView>
+      <Button fx:id="readButton" layoutX="209.0" layoutY="571.0" mnemonicParsing="false" onAction="#readSavedEvents" text="Load/Refresh" />
    </children>
 </AnchorPane>

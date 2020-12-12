@@ -20,26 +20,25 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author hayde
  */
 @Entity
-@Table(name = "SAVEDEVENTS")
+@Table(name = "SAVEDEVENT")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Savedevents.findAll", query = "SELECT s FROM Savedevents s")
-    , @NamedQuery(name = "Savedevents.findById", query = "SELECT s FROM Savedevents s WHERE s.id = :id")
-    , @NamedQuery(name = "Savedevents.findByEventid", query = "SELECT s FROM Savedevents s WHERE s.eventid = :eventid")
-    , @NamedQuery(name = "Savedevents.findByUserid", query = "SELECT s FROM Savedevents s WHERE s.userid = :userid")})
+    @NamedQuery(name = "SavedEvent.findAll", query = "SELECT s FROM SavedEvent s")
+    , @NamedQuery(name = "SavedEvent.findById", query = "SELECT s FROM SavedEvent s WHERE s.id = :id")
+    , @NamedQuery(name = "SavedEvent.findByEventid", query = "SELECT s FROM SavedEvent s WHERE s.eventid = :eventid")
+    , @NamedQuery(name = "SavedEvent.findByUserid", query = "SELECT s FROM SavedEvent s WHERE s.userid = :userid")})
 public class SavedEvent implements Serializable {
+
+    @Column(name = "USERID")
+    private Integer userid;
+    @Column(name = "EVENTID")
+    private Integer eventid;
 
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
     @Column(name = "ID")
     private Integer id;
-    @Basic(optional = false)
-    @Column(name = "EVENTID")
-    private int eventid;
-    @Basic(optional = false)
-    @Column(name = "USERID")
-    private Boolean userid;
 
     public SavedEvent() {
     }
@@ -48,7 +47,7 @@ public class SavedEvent implements Serializable {
         this.id = id;
     }
 
-    public SavedEvent(Integer id, int eventid, Boolean userid) {
+    public SavedEvent(Integer id, Integer eventid, Integer userid) {
         this.id = id;
         this.eventid = eventid;
         this.userid = userid;
@@ -62,21 +61,6 @@ public class SavedEvent implements Serializable {
         this.id = id;
     }
 
-    public int getEventid() {
-        return eventid;
-    }
-
-    public void setEventid(int eventid) {
-        this.eventid = eventid;
-    }
-
-    public Boolean getUserid() {
-        return userid;
-    }
-
-    public void setUserid(Boolean userid) {
-        this.userid = userid;
-    }
 
     @Override
     public int hashCode() {
@@ -101,6 +85,22 @@ public class SavedEvent implements Serializable {
     @Override
     public String toString() {
         return "model.Savedevents[ id=" + id + " ]";
+    }
+
+    public Integer getUserid() {
+        return userid;
+    }
+
+    public void setUserid(Integer userid) {
+        this.userid = userid;
+    }
+
+    public Integer getEventid() {
+        return eventid;
+    }
+
+    public void setEventid(Integer eventid) {
+        this.eventid = eventid;
     }
     
 }
