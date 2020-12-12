@@ -3,13 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/Users/taesankim/NetBeansProjects/JavaFX-FoodFinder/FoodFinder/src/foodfinder/FoodFinder.java</file>
-            <file>file:/Users/taesankim/NetBeansProjects/JavaFX-FoodFinder/FoodFinder/src/controller/RegisterPageViewController.java</file>
-            <file>file:/Users/taesankim/NetBeansProjects/JavaFX-FoodFinder/FoodFinder/src/model/Usermodel.java</file>
-            <file>file:/Users/taesankim/NetBeansProjects/JavaFX-FoodFinder/FoodFinder/src/controller/UpdateEventController.java</file>
-            <file>file:/Users/taesankim/NetBeansProjects/JavaFX-FoodFinder/FoodFinder/src/controller/NewEventController.java</file>
-            <file>file:/Users/taesankim/NetBeansProjects/JavaFX-FoodFinder/FoodFinder/src/model/Savedevent.java</file>
-            <file>file:/Users/taesankim/NetBeansProjects/JavaFX-FoodFinder/FoodFinder/src/controller/LoginPageViewController.java</file>
+            <file>file:/C:/Users/hayde/OneDrive/Documents/NetBeansProjects/311foodFinder_Attempt2/FoodFinder/src/controller/AdminViewController.java</file>
+            <file>file:/C:/Users/hayde/OneDrive/Documents/NetBeansProjects/311foodFinder_Attempt2/FoodFinder/src/META-INF/persistence.xml</file>
+            <file>file:/C:/Users/hayde/OneDrive/Documents/NetBeansProjects/311foodFinder_Attempt2/FoodFinder/src/controller/NewEventController.java</file>
+            <file>file:/C:/Users/hayde/OneDrive/Documents/NetBeansProjects/311foodFinder_Attempt2/FoodFinder/src/foodfinder/FoodFinder.java</file>
+            <file>file:/C:/Users/hayde/OneDrive/Documents/NetBeansProjects/311foodFinder_Attempt2/FoodFinder/src/view/UpdateEventView.fxml</file>
+            <file>file:/C:/Users/hayde/OneDrive/Documents/NetBeansProjects/311foodFinder_Attempt2/FoodFinder/src/model/Event.java</file>
+            <file>file:/C:/Users/hayde/OneDrive/Documents/NetBeansProjects/311foodFinder_Attempt2/FoodFinder/src/controller/UpdateEventController.java</file>
         </group>
     </open-files>
 </project-private>
