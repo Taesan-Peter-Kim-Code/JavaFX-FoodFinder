@@ -27,7 +27,9 @@ public class FoodFinder extends Application {
     public void start(Stage primaryStage) throws IOException {
 //        Parent root = FXMLLoader.load(getClass().getResource("/view/LoginPageView.fxml"));
         
-        Parent root = FXMLLoader.load(getClass().getResource("/view/FreeFoodMainView.fxml"));
+        //Parent root = FXMLLoader.load(getClass().getResource("/view/FreeFoodMainView.fxml"));
+        
+        Parent root = FXMLLoader.load(getClass().getResource("/view/AdminView.fxml"));
         
         Scene scene = new Scene(root);
         
