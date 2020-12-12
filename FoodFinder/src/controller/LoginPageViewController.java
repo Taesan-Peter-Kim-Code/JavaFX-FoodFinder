@@ -131,10 +131,37 @@ public class LoginPageViewController implements Initializable {
     {
         
         Usermodel user = searchByEmailAndPassword(getEmailField().getText(), getPWField().getText());
-
+        
         if(user != null)
         {
-            login(user, event);
+            if (getEmailField().getText().equals("admin") && getPWField().getText().equals("admin")) {
+                loginAsAdmin(user, event);
+            }
+            else {
+                login(user, event);
+            }
+        }
+    }
+    
+    private void loginAsAdmin(Usermodel user, ActionEvent event)
+    {
+        try
+        {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/AdminView.fxml"));
+            Parent mainView = loader.load();
+
+            Scene mainScene = new Scene(mainView);
+            Scene currentScene = ((Node)event.getSource()).getScene();
+            
+            FreeFoodMainViewController controller = loader.getController();
+               
+            Stage stage = (Stage) currentScene.getWindow();
+            stage.setScene(mainScene);
+            stage.show();
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
         }
     }
     
@@ -149,8 +176,7 @@ public class LoginPageViewController implements Initializable {
             Scene currentScene = ((Node)event.getSource()).getScene();
             
             FreeFoodMainViewController controller = loader.getController();
-            controller.setActiveUser(user);
-            
+               
             Stage stage = (Stage) currentScene.getWindow();
             stage.setScene(mainScene);
             stage.show();
@@ -160,6 +186,7 @@ public class LoginPageViewController implements Initializable {
             e.printStackTrace();
         }
     }
+    
     
     private Usermodel searchByEmailAndPassword(String email, String password)
     {

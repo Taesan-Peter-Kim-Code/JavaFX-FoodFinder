@@ -70,14 +70,14 @@ public class NewEventController {
         if (previousScene != null) {
             stage.setScene(previousScene);
         }
-        System.out.println("Dude");
+        //System.out.println("Dude");
         
         int id = adminController.createID();
         
-        System.out.println("Before issues");
+        //System.out.println("Before issues");
         System.out.println(id);
         
-       newEvent = createEntry(id);
+        newEvent = createEntry(id);
         
           
         adminController.create(newEvent);

@@ -170,6 +170,8 @@ public class AdminViewController implements Initializable {
 
     @FXML
     void readEvents(ActionEvent event) {
+        //eventView.refresh();
+        
         events = readAll();
         
         setTableData(events);
@@ -177,8 +179,33 @@ public class AdminViewController implements Initializable {
     }
 
     @FXML
-    void updateEvent(ActionEvent event) {
+    void updateEvent(ActionEvent event) throws IOException {
+        
+       
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/UpdateEventView.fxml"));
 
+        Parent newEventView = loader.load();
+
+        Scene tableViewScene = new Scene(newEventView);
+
+        UpdateEventController updateController = loader.getController();
+        
+        Scene currentScene = ((Node) event.getSource()).getScene();
+        updateController.setPreviousScene(currentScene);
+        
+        Stage stage = (Stage) currentScene.getWindow();
+
+        stage.setScene(tableViewScene);
+        stage.show();
+        
+        Event updateEvent = eventView.getSelectionModel().getSelectedItem();
+        
+        updateController.setFields(updateEvent);
+        
+       // updateController.setId(updateEvent);
+       
+       
+        
     }
     
      @Override
@@ -216,6 +243,7 @@ public class AdminViewController implements Initializable {
     }
     
     public List<Event> readAll(){
+        eventView.refresh();
         Query query = myManager.createNamedQuery("Event.findAll");
         List<Event> events = query.getResultList();
         
@@ -282,6 +310,35 @@ public class AdminViewController implements Initializable {
         }
         return id;
     }
+    
+     public void update(Event model) {
+        try {
+
+            Event existingEvent = myManager.find(Event.class, model.getId());
+
+            if (existingEvent != null) {
+                // begin transaction
+                myManager.getTransaction().begin();
+                
+                // update all atttributes
+                existingEvent.setId(model.getId());
+                existingEvent.setEventname(model.getEventname());
+                existingEvent.setOrganization(model.getOrganization());
+                existingEvent.setDate(model.getDate());
+                existingEvent.setTime(model.getTime());
+                
+                // end transaction
+                myManager.getTransaction().commit();
+                
+                System.out.println(existingEvent.toString() + " is updated");
+            }
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+        
+    }
+
+    
     
   
 }
