@@ -32,6 +32,7 @@ import javax.persistence.Query;
 import model.Event;
 import controller.NewEventController;
 import java.io.IOException;
+import javafx.scene.Node;
 import javafx.stage.Stage;
 
 
@@ -93,7 +94,30 @@ public class AdminViewController implements Initializable {
     }
 
     @FXML
-    void createEvent(ActionEvent event) throws IOException {
+    void createButtonAction(ActionEvent event) throws IOException {
+        
+        System.out.println("Creating new event");
+        
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/NewEventView.fxml"));
+
+        Parent newEventView = loader.load();
+
+        Scene tableViewScene = new Scene(newEventView);
+
+        NewEventController newEventController = loader.getController();
+        
+        Scene currentScene = ((Node) event.getSource()).getScene();
+        newEventController.setPreviousScene(currentScene);
+        
+        Stage stage = (Stage) currentScene.getWindow();
+
+        stage.setScene(tableViewScene);
+        stage.show();
+        
+        //createButtonLogic();
+        
+        
+        /*
         System.out.println("Creating new event");
         
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/NewEventView.fxml"));
@@ -212,6 +236,45 @@ public class AdminViewController implements Initializable {
             System.out.println(ex.getMessage());
         }
     }
-
+    
+    /*
+    public void createButtonLogic() throws IOException{//This handles the passing to the new view and setting the ID
+        System.out.println("Creating new event");
+        
+        
+        
+        
+        /*
+        
+        int id = 0; 
+        
+        Event newEvent = new Event();
+        
+        for(Event e: eventData){
+            if(id == e.getId()){
+                id++;
+            }
+        }
+        newEvent.setId(id);
+        
+        newEventController.createEntry(id, newEvent);
+*/
+    /*
+    }
+*/
+    
+    public Integer createID(){
+        
+        int id = 0;
+        
+        for(Event e: eventData){
+            if(id == e.getId()){
+                id++;
+            }
+        }
+        return id;
+    }
+    
+  
 }
 

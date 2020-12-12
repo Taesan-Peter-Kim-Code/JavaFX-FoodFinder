@@ -18,8 +18,10 @@ import model.Event;
 import controller.FreeFoodMainViewController;
 import java.io.IOException;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.stage.Stage;
 
 public class NewEventController {
 
@@ -46,13 +48,32 @@ public class NewEventController {
     
     private AdminViewController mainAdminController;
     
-    private int id;
-    
-    private Event newEvent;
-    
 
     @FXML
-    void createEvent(ActionEvent event, int id, Event newEvent) throws IOException {
+    void createEvent(ActionEvent event) throws IOException{
+        System.out.println("Creating entry");
+
+        
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/AdminView.fxml"));
+
+        Parent adminView = loader.load();
+
+        Scene tableViewScene = new Scene(adminView);
+
+        AdminViewController adminController = loader.getController();
+
+
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        
+        if (previousScene != null) {
+            stage.setScene(previousScene);
+        }
+        
+        createEntry();
+        
+        
+        
+        /*
         
         id = this.id;
         newEvent = this.newEvent;
@@ -77,6 +98,44 @@ public class NewEventController {
         Scene tableViewScene = new Scene(adminView);
 
         AdminViewController adminController = loader.getController();
+*/
+    }
+
+    Scene previousScene;
+
+    public void setPreviousScene(Scene scene) {
+        previousScene = scene;
+
+    }
+
+    
+    public void createEntry() throws IOException {
+        
+        AdminViewController mainAdminController = this.mainAdminController;
+        
+        int id = mainAdminController.createID();
+        
+        Event newEvent = new Event();
+        
+       
+        newEvent.setId(id);
+        
+
+        String eventName = eventNameField.getText();
+        String organization = organizationField.getText();
+        String date = dateField.getText();
+        String time = timeField.getText();
+        String description = descriptionField.getText();
+        
+        newEvent.setEventname(eventName);
+        newEvent.setOrganization(organization);
+        newEvent.setDate(date);
+        newEvent.setTime(time);
+        newEvent.setDescription(description);
+               
+        mainAdminController.create(newEvent);
+        
+        
     }
 
     public TextField getIdField() {
