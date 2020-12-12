@@ -30,13 +30,11 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "Event.findById", query = "SELECT e FROM Event e WHERE e.id = :id")
     , @NamedQuery(name = "Event.findByLocation", query = "SELECT e FROM Event e WHERE e.location = :location")
     , @NamedQuery(name = "Event.findByDate", query = "SELECT e FROM Event e WHERE e.date = :date")
-    , @NamedQuery(name = "Event.findByOrganizationname", query = "SELECT e FROM Event e WHERE e.organization = :organization")
+    , @NamedQuery(name = "Event.findByOrganizationname", query = "SELECT e FROM Event e WHERE e.organizationname = :organizationname")
     , @NamedQuery(name = "Event.findByDescription", query = "SELECT e FROM Event e WHERE e.description = :description")
     , @NamedQuery(name = "Event.findByEventname", query = "SELECT e FROM Event e WHERE e.eventname = :eventname")
     , @NamedQuery(name = "Event.findByTime", query = "SELECT e FROM Event e WHERE e.time = :time")})
 public class Event implements Serializable {
-
-
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -45,16 +43,17 @@ public class Event implements Serializable {
     private Integer id;
     @Column(name = "LOCATION")
     private String location;
-    @Column(name = "ORGANIZATION")
-    private String organization;
+    @Column(name = "DATE")
+    @Temporal(TemporalType.DATE)
+    private Date date;
+    @Column(name = "ORGANIZATIONNAME")
+    private String organizationname;
     @Column(name = "DESCRIPTION")
     private String description;
     @Column(name = "EVENTNAME")
     private String eventname;
     @Column(name = "TIME")
     private String time;
-    @Column(name = "DATE")
-    private String date;
 
     public Event() {
     }
@@ -79,13 +78,20 @@ public class Event implements Serializable {
         this.location = location;
     }
 
-
-    public String getOrganization() {
-        return organization;
+    public Date getDate() {
+        return date;
     }
 
-    public void setOrganization(String organization) {
-        this.organization = organization;
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public String getOrganizationname() {
+        return organizationname;
+    }
+
+    public void setOrganizationname(String organizationname) {
+        this.organizationname = organizationname;
     }
 
     public String getDescription() {
@@ -135,14 +141,6 @@ public class Event implements Serializable {
     @Override
     public String toString() {
         return "model.Event[ id=" + id + " ]";
-    }
-
-    public String getDate() {
-        return date;
-    }
-
-    public void setDate(String date) {
-        this.date = date;
     }
     
 }

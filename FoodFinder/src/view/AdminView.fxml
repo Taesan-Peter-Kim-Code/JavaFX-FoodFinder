@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="430.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AdminViewController">
+   <children>
+      <Label layoutX="226.0" layoutY="48.0" text="Admin View">
+         <font>
+            <Font size="28.0" />
+         </font>
+      </Label>
+      <TableView fx:id="eventView" layoutX="46.0" layoutY="215.0" prefHeight="200.0" prefWidth="509.0">
+        <columns>
+          <TableColumn fx:id="idColumn" prefWidth="75.0" text="ID" />
+          <TableColumn fx:id="eventNameColumn" prefWidth="75.0" text="Event Name" />
+            <TableColumn fx:id="orgColumn" prefWidth="75.0" text="Org" />
+            <TableColumn fx:id="dateColumn" prefWidth="75.0" text="Date" />
+            <TableColumn fx:id="timeColumn" prefWidth="75.0" text="Time" />
+            <TableColumn fx:id="desColumn" prefWidth="131.5" text="Description" />
+        </columns>
+      </TableView>
+      <ButtonBar layoutX="97.0" layoutY="145.0" prefHeight="40.0" prefWidth="408.0">
+        <buttons>
+          <Button fx:id="createButton" mnemonicParsing="false" onAction="#createEvent" text="Create" />
+            <Button fx:id="readButton" layoutX="135.0" layoutY="18.0" mnemonicParsing="false" onAction="#readEvents" prefHeight="25.0" prefWidth="171.0" text="Load/Refresh" />
+            <Button fx:id="deleteButton" layoutX="30.0" layoutY="18.0" mnemonicParsing="false" onAction="#deleteEvent" text="Delete" />
+            <Button fx:id="updateButton" layoutX="266.0" layoutY="18.0" mnemonicParsing="false" onAction="#updateEvent" prefHeight="25.0" text="Update" />
+        </buttons>
+      </ButtonBar>
+   </children>
+</AnchorPane>
