@@ -344,8 +344,7 @@ public class AdminViewController implements Initializable {
         }
         
     }
-
-*/
+    
     /*
     public void update(Event model) {
         try {
@@ -377,7 +376,5 @@ public class AdminViewController implements Initializable {
 */
     
     
-  
-
 }
 

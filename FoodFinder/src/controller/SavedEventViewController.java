@@ -24,7 +24,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 import model.Event;
-import model.SavedEvent;
+import model.Savedevent;
 
 /**
  * SavedEventViewController
@@ -82,16 +82,16 @@ public class SavedEventViewController implements Initializable{
     
     private EntityManager myManager;
     
-    private List<SavedEvent> savedEventList;
+    private List<Savedevent> savedEventList;
 
     
     private ObservableList <Event> eventData;
     
-    public void setTableData(List<SavedEvent> savedEventList) {
+    public void setTableData(List<Savedevent> savedEventList) {
         
         eventData = FXCollections.observableArrayList();
         
-        for(SavedEvent s: savedEventList){
+        for(Savedevent s: savedEventList){
             Event addedEvent = new Event();
             int eventId = s.getEventid();
             Query query = myManager.createNamedQuery("Event.findById");
@@ -161,10 +161,10 @@ public class SavedEventViewController implements Initializable{
         savedEventView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
 
 }
-    public List<SavedEvent> readAll(){
+    public List<Savedevent> readAll(){
         savedEventView.refresh();
-        Query query = myManager.createNamedQuery("SavedEvent.findAll");
-        List<SavedEvent> events = query.getResultList();
+        Query query = myManager.createNamedQuery("Savedevent.findAll");
+        List<Savedevent> events = query.getResultList();
         
         return events;
     }
