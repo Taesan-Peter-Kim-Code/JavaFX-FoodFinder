@@ -7,27 +7,27 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" fx:id="mainAnchor" minHeight="-Infinity" minWidth="-Infinity" prefHeight="627.0" prefWidth="1064.0" style="-fx-background-color: #669db3ff; -fx-border-color: black; -fx-border-width: 5; -fx-border-radius: 20; -fx-background-radius: 20;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.SavedEventViewController">
+<AnchorPane id="AnchorPane" fx:id="mainAnchor" minHeight="-Infinity" minWidth="-Infinity" prefHeight="630.0" prefWidth="884.0" style="-fx-background-color: #669db3ff; -fx-border-color: black; -fx-border-width: 5; -fx-border-radius: 20; -fx-background-radius: 20;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.SavedEventViewController">
    <children>
-      <Button fx:id="logOutButton" layoutX="391.0" layoutY="91.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#showView" prefHeight="36.0" prefWidth="126.0" style="-fx-background-color: white; -fx-font-family: sans-serif; -fx-background-radius: 5; -fx-border-radius: 5;" text="Log Out" textAlignment="CENTER" userData="/view/LoginPageView.fxml">
+      <Button fx:id="logOutButton" layoutX="638.0" layoutY="127.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#showView" prefHeight="36.0" prefWidth="126.0" style="-fx-background-color: white; -fx-font-family: sans-serif; -fx-border-color: black; -fx-background-radius: 5; -fx-border-radius: 5; -fx-background-insets: 0;" text="Log Out" textAlignment="CENTER" userData="/view/LoginPageView.fxml">
          <font>
             <Font size="13.0" />
          </font></Button>
-      <Button fx:id="myEventsButton" layoutX="235.0" layoutY="91.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#showView" prefHeight="36.0" prefWidth="155.0" style="-fx-background-color: gainsboro; -fx-font-family: sans-serif; -fx-border-color: black; -fx-background-insets: 0; -fx-border-radius: 5; -fx-background-radius: 5;" text="My Events" textAlignment="CENTER" userData="/view/SavedEventView.fxml">
+      <Button fx:id="myEventsButton" layoutX="365.0" layoutY="127.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#showView" prefHeight="36.0" prefWidth="155.0" style="-fx-background-color: white; -fx-font-family: sans-serif; -fx-border-color: black; -fx-background-insets: 0; -fx-border-radius: 5; -fx-background-radius: 5;" text="My Events" textAlignment="CENTER" userData="/view/SavedEventView.fxml">
          <font>
             <Font size="13.0" />
          </font></Button>
-      <Button fx:id="homeButton" contentDisplay="CENTER" graphicTextGap="26.0" layoutX="108.0" layoutY="91.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#showView" prefHeight="36.0" prefWidth="126.0" style="-fx-background-color: white; -fx-font-family: sans-serif; -fx-background-radius: 5; -fx-border-radius: 5;" text="Home" textAlignment="CENTER" userData="/view/FreeFoodMainView.fxml">
+      <Button fx:id="homeButton" contentDisplay="CENTER" graphicTextGap="26.0" layoutX="121.0" layoutY="127.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#showView" prefHeight="36.0" prefWidth="126.0" style="-fx-background-color: white; -fx-font-family: sans-serif; -fx-border-color: black; -fx-background-radius: 5; -fx-border-radius: 5; -fx-background-insets: 0;" text="Home" textAlignment="CENTER" userData="/view/FreeFoodMainView.fxml">
          <font>
             <Font size="13.0" />
          </font></Button>
-      <Label layoutX="192.0" layoutY="27.0" style="-fx-font-weight: bold; -fx-font-family: Tahoma; -fx-font-size: 36; -fx-text-fill: white;" text="Saved Events" textAlignment="CENTER">
+      <Label layoutX="334.0" layoutY="33.0" style="-fx-font-weight: bold; -fx-font-family: Tahoma; -fx-font-size: 36; -fx-text-fill: white;" text="Saved Events" textAlignment="CENTER">
          <font>
             <Font size="35.0" />
          </font>
       </Label>
-      <Button fx:id="deleteEventButton" layoutX="442.0" layoutY="571.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#deleteEvent" prefHeight="40.0" prefWidth="120.0" style="-fx-background-color: white; -fx-border-color: black; -fx-background-radius: 10; -fx-border-radius: 10; -fx-background-insets: 0; -fx-font-size: 15; -fx-font-family: sans-serif;" text="Delete Event" textAlignment="CENTER" />
-      <TableView fx:id="savedEventView" layoutX="119.0" layoutY="184.0" prefHeight="317.0" prefWidth="643.0">
+      <Button fx:id="deleteEventButton" layoutX="644.0" layoutY="551.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#deleteEvent" prefHeight="40.0" prefWidth="120.0" style="-fx-background-color: white; -fx-border-color: black; -fx-background-radius: 10; -fx-border-radius: 10; -fx-background-insets: 0; -fx-font-size: 15; -fx-font-family: sans-serif;" text="Delete Event" textAlignment="CENTER" />
+      <TableView fx:id="savedEventView" layoutX="121.0" layoutY="214.0" prefHeight="317.0" prefWidth="643.0">
         <columns>
           <TableColumn fx:id="idColumn" prefWidth="75.0" text="ID" />
           <TableColumn fx:id="eventNameColumn" prefWidth="75.0" text="Event Name" />
@@ -37,6 +37,6 @@
             <TableColumn fx:id="descriptionColumn" prefWidth="266.0" text="Description" />
         </columns>
       </TableView>
-      <Button fx:id="readButton" layoutX="209.0" layoutY="571.0" mnemonicParsing="false" onAction="#readSavedEvents" text="Load/Refresh" />
+      <Button fx:id="readButton" layoutX="495.0" layoutY="551.0" mnemonicParsing="false" onAction="#readSavedEvents" prefHeight="40.0" prefWidth="126.0" style="-fx-background-color: white; -fx-border-color: black; -fx-font-size: 15; -fx-font-family: sans-serif sans-serif; -fx-background-insets: 0; -fx-background-radius: 10; -fx-border-radius: 10;" text="Load/Refresh" />
    </children>
 </AnchorPane>

@@ -31,7 +31,7 @@ public class FoodFinder extends Application {
         
     //Parent root = FXMLLoader.load(getClass().getResource("/view/AdminView.fxml"));
     
-    //Parent root = FXMLLoader.load(getClass().getResource("/view/SavedEventView.fxml"));
+
         
         Scene scene = new Scene(root);
         
