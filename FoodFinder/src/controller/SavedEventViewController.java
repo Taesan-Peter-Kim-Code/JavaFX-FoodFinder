@@ -168,4 +168,11 @@ public class SavedEventViewController implements Initializable{
         
         return events;
     }
+    
+    public Savedevent readEventIDAndUserID(Integer eventid, Integer userid) {
+        Query query = myManager.createNamedQuery("Savedevent.findByEventidAndUserid");
+        query.setParameter("eventid", eventid);
+        query.setParameter("userid", userid);
+        return null;
+    }
 }
