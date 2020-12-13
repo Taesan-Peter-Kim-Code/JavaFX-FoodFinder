@@ -141,6 +141,12 @@ public class SavedEventViewController implements Initializable{
         int eventId = e.getId();
         int userId = currentUser.getId();
         
+        Savedevent toDelete = new Savedevent();
+        toDelete = readEventIDAndUserID(eventId, userId);
+        
+        delete(toDelete);
+        
+        
     }
 
     @FXML
@@ -181,10 +187,12 @@ public class SavedEventViewController implements Initializable{
         Query query = myManager.createNamedQuery("Savedevent.findByEventidAndUserid");
         query.setParameter("eventid", eventid);
         query.setParameter("userid", userid);
-        return null;
+        Savedevent foundEvent = new Savedevent();
+        foundEvent = (Savedevent) query.getSingleResult();
+        return foundEvent;
     }
   
-    public void delete(Event selectedEvent) {
+    public void delete(Savedevent selectedEvent) {
         try {
            
                 myManager.getTransaction().begin();
