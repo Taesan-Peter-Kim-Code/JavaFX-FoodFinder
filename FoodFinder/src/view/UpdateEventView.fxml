@@ -7,25 +7,26 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="559.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.UpdateEventController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="559.0" prefWidth="600.0" style="-fx-background-color: #669db3ff; -fx-border-color: black; -fx-border-width: 5; -fx-border-radius: 20; -fx-background-radius: 20;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.UpdateEventController">
    <children>
-      <Label layoutX="182.0" layoutY="30.0" text="Update Event">
+      <Label layoutX="182.0" layoutY="30.0" style="-fx-font-family: tahoma; -fx-font-size: 36; -fx-text-fill: white; -fx-font-weight: bold;" text="Update Event">
          <font>
             <Font size="36.0" />
          </font>
       </Label>
-      <TextField fx:id="eventNameField" layoutX="226.0" layoutY="141.0" />
-      <TextField fx:id="organizationField" layoutX="226.0" layoutY="188.0" />
-      <TextField fx:id="dateField" layoutX="226.0" layoutY="233.0" />
-      <TextField fx:id="timeField" layoutX="226.0" layoutY="279.0" />
-      <TextArea fx:id="descriptionField" layoutX="182.0" layoutY="319.0" prefHeight="200.0" prefWidth="238.0" />
-      <Label layoutX="133.0" layoutY="145.0" text="Event Name:" />
-      <Label layoutX="126.0" layoutY="283.0" text="Time:" />
-      <Label layoutX="85.0" layoutY="411.0" text="Description:" />
-      <Label layoutX="131.0" layoutY="192.0" text="Organization:" />
-      <Label layoutX="134.0" layoutY="237.0" text="Date:" />
-      <Button fx:id="updateButton" layoutX="482.0" layoutY="507.0" mnemonicParsing="false" onAction="#updateEvent" text="Update" />
-      <TextField fx:id="idField" editable="false" layoutX="226.0" layoutY="101.0" />
-      <Label layoutX="141.0" layoutY="105.0" text="ID:" />
+      <TextField fx:id="eventNameField" layoutX="243.0" layoutY="146.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="300.0" />
+      <TextField fx:id="organizationField" layoutX="243.0" layoutY="198.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="300.0" />
+      <TextField fx:id="dateField" layoutX="243.0" layoutY="250.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="300.0" />
+      <TextField fx:id="timeField" layoutX="243.0" layoutY="302.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="300.0" />
+      <TextArea fx:id="descriptionField" layoutX="243.0" layoutY="355.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="300.0" />
+      <Label layoutX="98.0" layoutY="153.0" style="-fx-font-weight: bold; -fx-text-fill: white; -fx-font-size: 20; -fx-font-family: sans-serif;" text="Event Name:" />
+      <Label layoutX="168.0" layoutY="302.0" style="-fx-font-weight: bold; -fx-text-fill: white; -fx-font-size: 20; -fx-font-family: sans-serif;" text="Time:" />
+      <Label layoutX="107.0" layoutY="355.0" style="-fx-font-weight: bold; -fx-text-fill: white; -fx-font-size: 20; -fx-font-family: sans-serif;" text="Description:" />
+      <Label layoutX="91.0" layoutY="207.0" style="-fx-font-weight: bold; -fx-text-fill: white; -fx-font-size: 20; -fx-font-family: sans-serif;" text="Organization:" />
+      <Label layoutX="170.0" layoutY="257.0" style="-fx-font-weight: bold; -fx-text-fill: white; -fx-font-size: 20; -fx-font-family: sans-serif;" text="Date:" />
+      <Button fx:id="updateButton" layoutX="472.0" layoutY="516.0" mnemonicParsing="false" onAction="#updateEvent" style="-fx-background-color: white; -fx-font-family: sans-serif; -fx-border-color: black; -fx-background-radius: 10; -fx-border-radius: 10; -fx-font-size: 15; -fx-background-insets: 0;" text="Update" />
+      <TextField fx:id="idField" editable="false" layoutX="243.0" layoutY="95.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="300.0" />
+      <Label layoutX="193.0" layoutY="106.0" style="-fx-font-weight: bold; -fx-text-fill: white; -fx-font-size: 20; -fx-font-family: sans-serif;" text="ID:" />
+      <Button fx:id="backBtn" layoutX="14.0" layoutY="16.0" mnemonicParsing="false" onAction="#backAction" style="-fx-background-color: white; -fx-font-family: sans-serif; -fx-border-color: black; -fx-background-radius: 10; -fx-border-radius: 10; -fx-font-size: 15; -fx-background-insets: 0;" text="Back" />
    </children>
 </AnchorPane>

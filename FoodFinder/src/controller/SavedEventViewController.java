@@ -190,6 +190,7 @@ public class SavedEventViewController implements Initializable{
         Savedevent foundEvent = new Savedevent();
         foundEvent = (Savedevent) query.getSingleResult();
         return foundEvent;
+
     }
   
     public void delete(Savedevent selectedEvent) {
@@ -207,6 +208,6 @@ public class SavedEventViewController implements Initializable{
             System.out.println(ex.getMessage());
         }
 
-      
+
     }
 }
