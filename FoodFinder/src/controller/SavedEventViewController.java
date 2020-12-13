@@ -87,9 +87,14 @@ public class SavedEventViewController implements Initializable{
     
     private List<Savedevent> savedEventList;
     
-
-    
     private ObservableList <Event> eventData;
+    
+
+    public SavedEventViewController() {
+        
+    }
+    
+    
     
     public void setTableData(List<Savedevent> savedEventList) {
         
@@ -210,4 +215,35 @@ public class SavedEventViewController implements Initializable{
 
 
     }
+     public Integer createID(){
+        
+        int id = 0;
+        
+        List <Savedevent> eventList;
+        
+        if(id != 0){
+            eventList = readAll();
+        
+        if(eventList != null){
+            
+        for(Savedevent e: eventList){
+            
+            id++;
+            
+            if(id == e.getId()){
+                id++;
+            }
+        }
+        
+        }else{
+            id++;
+        }
+        }else{
+            id++;
+        }
+        
+        
+        return id;
+        
+}
 }

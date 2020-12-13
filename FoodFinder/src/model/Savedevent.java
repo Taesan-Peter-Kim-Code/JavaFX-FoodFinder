@@ -5,7 +5,9 @@
  */
 package model;
 
+import controller.SavedEventViewController;
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -42,8 +44,10 @@ public class Savedevent implements Serializable {
     public Savedevent() {
     }
 
-    public Savedevent(Integer id) {
+    public Savedevent(Integer id, Integer eventid, Integer userid) {
         this.id = id;
+        this.eventid = eventid;
+        this.userid = userid;
     }
 
     public Integer getId() {

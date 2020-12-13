@@ -23,6 +23,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 import model.Event;
+import model.Savedevent;
 import model.Usermodel;
 
 /**
@@ -64,6 +65,12 @@ public class FreeFoodMainViewController implements Initializable {
     
     private List<Event> events;
     
+    private Savedevent savedEvent;
+    
+    private Event selectedEvent;
+    
+   // private LoginPageViewController loginController;
+    
     public void setTableData(List<Event> eventList) {
         
         eventData = FXCollections.observableArrayList();
@@ -90,7 +97,12 @@ public class FreeFoodMainViewController implements Initializable {
 
     @FXML
     void saveEventBtn(ActionEvent event) {
-        System.out.println("Save button clicked");
+        LoginPageViewController loginController = new LoginPageViewController();
+        
+        Event currentEvent = eventTable.getSelectionModel().getSelectedItem();
+        Usermodel currentUser = loginController.getCurrentUser();
+        
+        createSavedEvent(currentUser, currentEvent);   
     }
 
     @Override
@@ -142,6 +154,68 @@ public class FreeFoodMainViewController implements Initializable {
         
         stage.setScene(saveScene);
         stage.show();
+    }
+    
+    public void create(Savedevent newEvent) {
+        
+        try {
+            myManager.getTransaction().begin();
+            
+            if(savedEvent.getId() != null){
+                
+                myManager.persist(newEvent);
+                
+                myManager.getTransaction().commit();
+                
+                System.out.println(newEvent.toString() + " is created");
+                
+            }
+                
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+/*
+    public Integer createID(){
+        
+        int id = 0;
+        
+        List <Savedevent> eventList;
+        
+        SavedEventViewController savedController = new SavedEventViewController();
+        
+        eventList = savedController.readAll();
+        
+        for(Savedevent e: eventList){
+            
+            id++;
+            
+            if(id == e.getId()){
+                id++;
+            }
+        }
+        return id;
+    }
+*/
+    
+    public void createSavedEvent(Usermodel currentUser, Event currentEvent){
+        /*
+        
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/SavedEventView.fxml"));
+        SavedEventViewController savedController = loader.getController();
+*/
+         Savedevent newEvent = new Savedevent(null, null, null);
+         SavedEventViewController savedController = new SavedEventViewController();
+         
+        int savedEventID = savedController
+        int userID = currentUser.getId();
+        int eventID = currentEvent.getId();
+        
+        newEvent = new Savedevent(savedEventID, userID, eventID);
+        
+       
+        
+        create(newEvent);
     }
 
 }

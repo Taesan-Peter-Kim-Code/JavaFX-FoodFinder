@@ -49,6 +49,10 @@ public class LoginPageViewController implements Initializable {
     
     private EntityManager manager;
     
+    private Boolean currentUserFlag;
+    
+    private Usermodel currentUser;
+    
     
     public TextField getEmailField() {
         return emailTextField;
@@ -136,9 +140,12 @@ public class LoginPageViewController implements Initializable {
         {
             if (getEmailField().getText().equals("admin") && getPWField().getText().equals("admin")) {
                 loginAsAdmin(user, event);
+                
             }
             else {
                 login(user, event);
+                currentUserFlag = true;
+                setCurrentUser(user);
             }
         }
     }
@@ -213,6 +220,16 @@ public class LoginPageViewController implements Initializable {
             return users.get(0);
         }
         
+    }
+    public void setCurrentUser(Usermodel user){
+        
+        if(currentUserFlag == true){
+            this.currentUser = user;
+        }
+    }
+    
+    public Usermodel getCurrentUser(){
+        return currentUser;
     }
 /*
     public Integer setCurrentUserID(){
