@@ -213,6 +213,14 @@ public class LoginPageViewController implements Initializable {
             return users.get(0);
         }
         
-    } 
+    }
+/*
+    public Integer setCurrentUserID(){
+        Usermodel user = searchByEmailAndPassword(getEmailField().getText(), getPWField().getText());
+        int userId = user.getId();
+        
+        return userId;
+    }
+*/
     
 }
