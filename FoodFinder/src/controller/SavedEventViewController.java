@@ -25,6 +25,7 @@ import javax.persistence.Persistence;
 import javax.persistence.Query;
 import model.Event;
 import model.Savedevent;
+import model.Usermodel;
 
 /**
  * SavedEventViewController
@@ -78,11 +79,14 @@ public class SavedEventViewController implements Initializable{
     
     @FXML
     private Button readButton;
+    
+    private Usermodel currentUser;
 
     
     private EntityManager myManager;
     
     private List<Savedevent> savedEventList;
+    
 
     
     private ObservableList <Event> eventData;
@@ -133,7 +137,10 @@ public class SavedEventViewController implements Initializable{
 
     @FXML
     void deleteEvent(ActionEvent event) {
-
+        Event e = savedEventView.getSelectionModel().getSelectedItem();
+        int eventId = e.getId();
+        int userId = currentUser.getId();
+        
     }
 
     @FXML
@@ -169,10 +176,28 @@ public class SavedEventViewController implements Initializable{
         return events;
     }
     
+
     public Savedevent readEventIDAndUserID(Integer eventid, Integer userid) {
         Query query = myManager.createNamedQuery("Savedevent.findByEventidAndUserid");
         query.setParameter("eventid", eventid);
         query.setParameter("userid", userid);
         return null;
+    }
+
+    public void delete(Event selectedEvent) {
+        try {
+           
+                myManager.getTransaction().begin();
+                
+    
+                myManager.remove(selectedEvent);
+                
+      
+                myManager.getTransaction().commit();
+ 
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+
     }
 }
