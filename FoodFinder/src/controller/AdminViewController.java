@@ -306,7 +306,8 @@ public class AdminViewController implements Initializable {
         
         eventList = readAll();
         
-        for(Event e: eventList){
+        if(eventList != null){
+            for(Event e: eventList){
             
             id++;
             
@@ -314,6 +315,12 @@ public class AdminViewController implements Initializable {
                 id++;
             }
         }
+        }
+        else{
+        id++;
+    }
+        
+        
         return id;
     }
     /*
