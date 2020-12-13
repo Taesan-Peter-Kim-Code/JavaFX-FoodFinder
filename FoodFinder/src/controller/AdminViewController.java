@@ -344,18 +344,7 @@ public class AdminViewController implements Initializable {
         }
         
     }
-<<<<<<< HEAD
-     
-    Scene previousScene;
-
-    public void setPreviousScene(Scene scene) {
-        previousScene = scene;
-
-    }
-
-     
-=======
-*/
+    
     /*
     public void update(Event model) {
         try {
@@ -387,7 +376,5 @@ public class AdminViewController implements Initializable {
 */
     
     
-  
->>>>>>> 7ba6af66884d562f22fc771e9e2f59ee3407e5f0
 }
 
