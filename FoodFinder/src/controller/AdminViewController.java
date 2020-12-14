@@ -35,6 +35,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import javafx.scene.Node;
 import javafx.stage.Stage;
+import org.eclipse.persistence.config.HintValues;
+import org.eclipse.persistence.config.QueryHints;
 
 /**
  * AdminViewController
@@ -84,6 +86,8 @@ public class AdminViewController implements Initializable {
     
     private List<Event> events;
     
+    private Event selectedEvent;
+    
     
     public void setTableData(List<Event> eventList) {
         
@@ -99,7 +103,7 @@ public class AdminViewController implements Initializable {
        
         
     }
-
+    
     @FXML
     void createButtonAction(ActionEvent event) throws IOException {
         
@@ -208,6 +212,7 @@ public class AdminViewController implements Initializable {
         
         updateController.setFields(updateEvent);
         
+        
        // updateController.setId(updateEvent);
        
        
@@ -249,8 +254,8 @@ public class AdminViewController implements Initializable {
     }
     
     public List<Event> readAll(){
-        eventView.refresh();
         Query query = myManager.createNamedQuery("Event.findAll");
+        query.setHint(QueryHints.REFRESH, HintValues.TRUE);
         List<Event> events = query.getResultList();
         
         return events;
