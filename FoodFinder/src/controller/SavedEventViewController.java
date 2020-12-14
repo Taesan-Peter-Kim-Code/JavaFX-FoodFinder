@@ -82,18 +82,11 @@ public class SavedEventViewController implements Initializable{
     
     private Usermodel currentUser;
 
-    
     private EntityManager myManager;
     
     private List<Savedevent> savedEventList;
     
     private ObservableList <Event> eventData;
-    
-    
-
-    public SavedEventViewController() {
-        
-    }
     
     
     
@@ -102,13 +95,9 @@ public class SavedEventViewController implements Initializable{
         eventData = FXCollections.observableArrayList();
         
         for(Savedevent s: savedEventList){
-            Event addedEvent = new Event();
-            int eventId = s.getEventid();
-            Query query = myManager.createNamedQuery("Event.findById");
-            query.setParameter("id", eventId);
-            addedEvent = (Event) query.getSingleResult();
-            eventData.add(addedEvent);
-        
+            int eventID = s.getEventid();
+            Event addedEvent = readEventbyID(eventID);
+            eventData.add(addedEvent); 
         }
         savedEventView.setItems(eventData);
         savedEventView.refresh();
@@ -118,7 +107,9 @@ public class SavedEventViewController implements Initializable{
     
     @FXML
     void readSavedEvents(ActionEvent event) {
-        savedEventList = readAll();
+        Usermodel  currentPerson = getCurrentUser();
+        int currentUserID = currentPerson.getId();
+        savedEventList = readByUserID(currentUserID);
         setTableData(savedEventList);
     }
 
@@ -188,15 +179,37 @@ public class SavedEventViewController implements Initializable{
         return events;
     }
     
+    public List<Savedevent> readByUserID(Integer userid){
+        
+        savedEventView.refresh();
+        Query query = myManager.createNamedQuery("Savedevent.findByUserid");
+        query.setParameter("userid", userid);
+        List<Savedevent> savedEvents = query.getResultList();
+        
+        return savedEvents;
+    }
+    
 
     public Savedevent readEventIDAndUserID(Integer eventid, Integer userid) {
+        
         Query query = myManager.createNamedQuery("Savedevent.findByEventidAndUserid");
         query.setParameter("eventid", eventid);
         query.setParameter("userid", userid);
         Savedevent foundEvent = new Savedevent();
         foundEvent = (Savedevent) query.getSingleResult();
+        
         return foundEvent;
 
+    }
+    
+    public Event readEventbyID(int eventID){
+        
+        Event foundEvent = new Event();
+        Query query = myManager.createNamedQuery("Event.findById");
+        query.setParameter("id", eventID);
+        foundEvent = (Event) query.getSingleResult();
+        
+        return foundEvent;
     }
   
     public void delete(Savedevent selectedEvent) {
@@ -247,4 +260,11 @@ public class SavedEventViewController implements Initializable{
         return id;
         
 }
+      public void setCurrentUser(Usermodel user){
+            currentUser = user;
+    }
+    
+    public Usermodel getCurrentUser(){
+        return currentUser;
+    }
 }

@@ -143,11 +143,9 @@ public class LoginPageViewController implements Initializable {
                 loginAsAdmin(user, event);
                 
             }
-            else {
-                login(user, event);
-                currentUserFlag = true;
-                setCurrentUser(user);
-                }
+            else{
+                login(user,event);
+            }
         }
     }
     
@@ -178,11 +176,15 @@ public class LoginPageViewController implements Initializable {
     {
         try
         {
+
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/FreeFoodMainView.fxml"));
             Parent mainView = loader.load();
+            FreeFoodMainViewController foodController = loader.getController();
 
             Scene mainScene = new Scene(mainView);
             Scene currentScene = ((Node)event.getSource()).getScene();
+            foodController.setCurrentUser(user);
+            
             
 //            FreeFoodMainViewController mainController = loader.getController();
 //            mainController.setPreviousScene(currentScene);
