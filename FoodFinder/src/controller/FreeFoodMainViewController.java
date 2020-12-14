@@ -204,10 +204,10 @@ public class FreeFoodMainViewController implements Initializable {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/SavedEventView.fxml"));
         SavedEventViewController savedController = loader.getController();
 */
-         Savedevent newEvent = new Savedevent(null, null, null);
-         SavedEventViewController savedController = new SavedEventViewController();
+        Savedevent newEvent = new Savedevent(null, null, null);
+        SavedEventViewController savedController = new SavedEventViewController();
          
-        int savedEventID = savedController
+        int savedEventID = savedController.createID();
         int userID = currentUser.getId();
         int eventID = currentEvent.getId();
         

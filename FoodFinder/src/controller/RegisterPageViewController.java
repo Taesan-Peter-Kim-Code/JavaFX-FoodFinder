@@ -162,33 +162,34 @@ public class RegisterPageViewController implements Initializable {
     {
         try
         {
-            Query query = getManager().createNamedQuery("Usermodel.findAll");
-            List<Usermodel> users = query.getResultList();
-            int id = 1;
-            
-            if (!users.isEmpty())
+            if (!(getPwTextField().getText().equals(getcPWTextField().getText())))
             {
-                if (getPwTextField().getText().equals(getcPWTextField().getText()))
-                {
-                    id = users.size() + 1;
-                }
+                System.out.println("no match for password");
+                return;
             }
-            
-            Usermodel user = new Usermodel();
-            user.setId(id);
-            user.setFirstname(firstname);
-            user.setLastname(lastname);
-            user.setEmail(email);
-            user.setPassword(password);
             
             if (!searchUser(email)) 
             {
+                int id = 1;
+                Query query = getManager().createNamedQuery("Usermodel.findAll");
+                List<Usermodel> users = query.getResultList();
+                if (!users.isEmpty()) {
+                    
+                    id = users.size() + 1;
+                }
+                    
+                Usermodel user = new Usermodel();
+                user.setId(id);
+     
+                user.setFirstname(firstname);
+                user.setLastname(lastname);
+                user.setEmail(email);
+                user.setPassword(password);
                 getManager().getTransaction().begin();
                 
                 getManager().persist(user);
                 getManager().getTransaction().commit();
-            }
-            
+            }     
         } 
         catch(Exception e)
         {
@@ -218,7 +219,7 @@ public class RegisterPageViewController implements Initializable {
             
         } catch (Exception e) {
             userFound = false;
-            System.out.println("Registration Succeed");
+            
         }
         return userFound;
     }
