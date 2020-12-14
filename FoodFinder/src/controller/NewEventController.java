@@ -110,6 +110,11 @@ public class NewEventController {
         AdminViewController adminController = loader.getController();
 */
     }
+    
+     @FXML
+    void backAction(ActionEvent event) {
+         System.out.println("Go back");
+    }
 
     Scene previousScene;
 

@@ -5,6 +5,7 @@
  */
 package controller;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -23,6 +24,7 @@ import javafx.stage.Stage;
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
+import javax.swing.JOptionPane;
 import model.Usermodel;
 
 /**
@@ -131,7 +133,7 @@ public class LoginPageViewController implements Initializable {
     }
     
     @FXML
-    private void toLogin(ActionEvent event)
+    private void toLogin(ActionEvent event) throws IOException
     {
         
         Usermodel user = searchByEmailAndPassword(getEmailField().getText(), getPWField().getText());
@@ -140,14 +142,14 @@ public class LoginPageViewController implements Initializable {
         {
             if (getEmailField().getText().equals("admin") && getPWField().getText().equals("admin")) {
                 loginAsAdmin(user, event);
-                System.out.println("Logged in as an admin");
+                System.out.println("Logged in as an admin");  
                 
             }
             else {
                 login(user, event);
                 currentUserFlag = true;
                 setCurrentUser(user);
-                System.out.println("Login Succeed");
+                JOptionPane.showMessageDialog(null, "Login Succeed");
             }
         }
     }
@@ -208,7 +210,7 @@ public class LoginPageViewController implements Initializable {
         
         if(users.size() < 1)
         {
-            System.out.println("No user exists");
+            JOptionPane.showMessageDialog(null, "No user exists");
             return null;
         }
         else
@@ -220,7 +222,7 @@ public class LoginPageViewController implements Initializable {
     public void setCurrentUser(Usermodel user){
         
         if(currentUserFlag == true){
-            this.currentUser = user;
+            currentUser = user;
         }
     }
     

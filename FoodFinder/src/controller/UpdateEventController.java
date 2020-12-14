@@ -110,6 +110,7 @@ public class UpdateEventController implements Initializable{
 
     }
     
+     Event existingEvent;
     
     public void setFields(Event updatedEvent){
         //System.out.printn("Set fields");
@@ -120,12 +121,11 @@ public class UpdateEventController implements Initializable{
         dateField.setText(updatedEvent.getDate());
         timeField.setText(updatedEvent.getTime());
         descriptionField.setText(updatedEvent.getDescription());
-
+        existingEvent = updatedEvent;
     }
     
+   
     public Event updateEvent(){
-        
-        Event existingEvent = new Event();
         
         String stringID = idField.getText();
         int id = Integer.parseInt(stringID);

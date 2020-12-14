@@ -25,6 +25,7 @@ import javax.persistence.Query;
 import model.Event;
 import model.Savedevent;
 import model.Usermodel;
+import controller.LoginPageViewController;
 
 /**
  *
@@ -69,6 +70,8 @@ public class FreeFoodMainViewController implements Initializable {
     
     private Event selectedEvent;
     
+    
+    
    // private LoginPageViewController loginController;
     
     public void setTableData(List<Event> eventList) {
@@ -86,6 +89,10 @@ public class FreeFoodMainViewController implements Initializable {
         
     }
     
+    public void getController(FreeFoodMainViewController mainController){
+        
+    }
+    
 
     @FXML
     void loadData(ActionEvent event) {
@@ -96,13 +103,18 @@ public class FreeFoodMainViewController implements Initializable {
     }
 
     @FXML
-    void saveEventBtn(ActionEvent event) {
-        LoginPageViewController loginController = new LoginPageViewController();
+    void saveEventBtn(ActionEvent event) throws IOException {
+         FXMLLoader loader = new FXMLLoader(getClass().getResource(
+               "/view/LoginPageView.fxml"));
+         Parent root = (Parent) loader.load();
+         LoginPageViewController ctrl = loader.getController();
+        
+         Usermodel currentUser = ctrl.getCurrentUser();
         
         Event currentEvent = eventTable.getSelectionModel().getSelectedItem();
-        Usermodel currentUser = loginController.getCurrentUser();
+        int currentUserID = currentUser.getId();
         
-        createSavedEvent(currentUser, currentEvent);   
+        createSavedEvent(currentUserID, currentEvent);   
     }
 
     @Override
@@ -157,11 +169,12 @@ public class FreeFoodMainViewController implements Initializable {
     }
     
     public void create(Savedevent newEvent) {
-        
+        //System.out.println("We got this far");
         try {
             myManager.getTransaction().begin();
-            
-            if(savedEvent.getId() != null){
+            System.out.println("Before if");
+            if(newEvent.getId() != null){
+                System.out.println("after if");
                 
                 myManager.persist(newEvent);
                 
@@ -198,24 +211,25 @@ public class FreeFoodMainViewController implements Initializable {
     }
 */
     
-    public void createSavedEvent(Usermodel currentUser, Event currentEvent){
+    public void createSavedEvent(Integer userID, Event currentEvent){
         /*
         
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/SavedEventView.fxml"));
         SavedEventViewController savedController = loader.getController();
 */
-        Savedevent newEvent = new Savedevent(null, null, null);
-        SavedEventViewController savedController = new SavedEventViewController();
-         
-        int savedEventID = savedController.createID();
-        int userID = currentUser.getId();
+         //Savedevent newEvent = new Savedevent(null, null, null);
+
         int eventID = currentEvent.getId();
+        int savedEventID = eventID;
         
-        newEvent = new Savedevent(savedEventID, userID, eventID);
+        Savedevent newEvent = new Savedevent(savedEventID, userID, eventID);
         
        
         
         create(newEvent);
     }
+    
+    
+    
 
 }
