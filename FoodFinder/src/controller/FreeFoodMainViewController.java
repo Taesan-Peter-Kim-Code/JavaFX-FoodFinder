@@ -223,12 +223,13 @@ public class FreeFoodMainViewController implements Initializable {
         int eventID = currentEvent.getId();
         int savedEventID = eventID;
         
-        Savedevent newEvent = new Savedevent(savedEventID, userID, eventID);
+//        Savedevent newEvent = new Savedevent(savedEventID, userID, eventID);
         
        
         
-        create(newEvent);
+//        create(newEvent);
     }
+    
 
 
 }

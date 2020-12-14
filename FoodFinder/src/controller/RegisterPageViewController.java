@@ -58,6 +58,8 @@ public class RegisterPageViewController implements Initializable {
     private Button registerBtn;
     @FXML
     private Button backBtn;
+    @FXML
+    private Label feedbackLabel;
     
     private EntityManager manager;
 
@@ -131,6 +133,16 @@ public class RegisterPageViewController implements Initializable {
         this.manager = manager;
     }
     
+    public Label getFeedbackLabel()
+    {
+        return feedbackLabel;
+    }
+
+    public void setFeedbackLabel(Label feedbackLabel)
+    {
+        this.feedbackLabel = feedbackLabel;
+    }
+    
     @FXML
     private void backAction(ActionEvent event) 
     {
@@ -165,7 +177,7 @@ public class RegisterPageViewController implements Initializable {
         {
             if (!(getPwTextField().getText().equals(getcPWTextField().getText())))
             {
-                JOptionPane.showMessageDialog(null, "Password and Confirm Password do not match");
+                getFeedbackLabel().setText("Password and Confirm Password do not match");
                 return;
             }
             
@@ -190,10 +202,13 @@ public class RegisterPageViewController implements Initializable {
                 
                 getManager().persist(user);
                 getManager().getTransaction().commit();
-                JOptionPane.showMessageDialog(null, "Registration Succeed!");
+                
+                getFeedbackLabel().setText("Registration Succeed");
+                
             }
             else{
-                JOptionPane.showMessageDialog(null, "Email already exists");
+                getFeedbackLabel().setText("Email already exists");
+                return;
             }
                    
         } 
