@@ -24,6 +24,7 @@ import javafx.stage.Stage;
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
+import javax.swing.JOptionPane;
 import model.Usermodel;
 
 /**
@@ -141,14 +142,15 @@ public class LoginPageViewController implements Initializable {
         {
             if (getEmailField().getText().equals("admin") && getPWField().getText().equals("admin")) {
                 loginAsAdmin(user, event);
-                System.out.println("Logged in as an admin");
+                System.out.println("Logged in as an admin");  
                 
             }
             else {
                 login(user, event);
                 currentUserFlag = true;
                 setCurrentUser(user);
-                }
+                JOptionPane.showMessageDialog(null, "Login Succeed");
+            }
         }
     }
     
@@ -208,7 +210,7 @@ public class LoginPageViewController implements Initializable {
         
         if(users.size() < 1)
         {
-            System.out.println("No user exists");
+            JOptionPane.showMessageDialog(null, "No user exists");
             return null;
         }
         else

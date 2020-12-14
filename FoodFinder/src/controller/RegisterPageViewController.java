@@ -24,6 +24,7 @@ import javafx.stage.Stage;
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
+import javax.swing.JOptionPane;
 import model.Usermodel;
 
 /**
@@ -164,7 +165,7 @@ public class RegisterPageViewController implements Initializable {
         {
             if (!(getPwTextField().getText().equals(getcPWTextField().getText())))
             {
-                System.out.println("no match for password");
+                JOptionPane.showMessageDialog(null, "Password and Confirm Password do not match");
                 return;
             }
             
@@ -176,8 +177,8 @@ public class RegisterPageViewController implements Initializable {
                 if (!users.isEmpty()) {
                     
                     id = users.size() + 1;
-                }
-                    
+                } 
+                 
                 Usermodel user = new Usermodel();
                 user.setId(id);
      
@@ -189,7 +190,12 @@ public class RegisterPageViewController implements Initializable {
                 
                 getManager().persist(user);
                 getManager().getTransaction().commit();
-            }     
+                JOptionPane.showMessageDialog(null, "Registration Succeed!");
+            }
+            else{
+                JOptionPane.showMessageDialog(null, "Email already exists");
+            }
+                   
         } 
         catch(Exception e)
         {
@@ -214,8 +220,7 @@ public class RegisterPageViewController implements Initializable {
             query.setParameter("email", email);
             Usermodel users = (Usermodel) query.getSingleResult();
             userFound = true;
-            System.out.println("Registration Failed");
-            
+   
             
         } catch (Exception e) {
             userFound = false;
