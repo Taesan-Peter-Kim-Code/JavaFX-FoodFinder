@@ -216,10 +216,9 @@ public class FreeFoodMainViewController implements Initializable {
         
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/SavedEventView.fxml"));
         SavedEventViewController savedController = loader.getController();
-*/
+        */
 
          //Savedevent newEvent = new Savedevent(null, null, null);
-         
 
         int eventID = currentEvent.getId();
         int savedEventID = eventID;
@@ -230,8 +229,6 @@ public class FreeFoodMainViewController implements Initializable {
         
         create(newEvent);
     }
-    
-    
-    
+
 
 }

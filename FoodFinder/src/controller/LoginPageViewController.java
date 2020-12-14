@@ -141,6 +141,7 @@ public class LoginPageViewController implements Initializable {
         {
             if (getEmailField().getText().equals("admin") && getPWField().getText().equals("admin")) {
                 loginAsAdmin(user, event);
+                System.out.println("Logged in as an admin");
                 
             }
             else {
@@ -197,7 +198,6 @@ public class LoginPageViewController implements Initializable {
         }
     }
     
-    
     private Usermodel searchByEmailAndPassword(String email, String password)
     {
         Query query = getManager().createNamedQuery("Usermodel.findByEmailAndPassword");
@@ -209,11 +209,6 @@ public class LoginPageViewController implements Initializable {
         if(users.size() < 1)
         {
             System.out.println("No user exists");
-            return null;
-        }
-        else if(users.size() > 1)
-        {
-            System.out.println("fsda");
             return null;
         }
         else
