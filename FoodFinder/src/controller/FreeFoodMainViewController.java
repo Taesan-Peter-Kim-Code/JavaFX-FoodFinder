@@ -108,7 +108,8 @@ public class FreeFoodMainViewController implements Initializable {
                "/view/LoginPageView.fxml"));
          Parent root = (Parent) loader.load();
          LoginPageViewController ctrl = loader.getController();
-        Usermodel currentUser = ctrl.getCurrentUser();
+        
+         Usermodel currentUser = ctrl.getCurrentUser();
         
         Event currentEvent = eventTable.getSelectionModel().getSelectedItem();
         int currentUserID = currentUser.getId();

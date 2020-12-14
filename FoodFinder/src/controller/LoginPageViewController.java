@@ -225,7 +225,7 @@ public class LoginPageViewController implements Initializable {
     public void setCurrentUser(Usermodel user){
         
         if(currentUserFlag == true){
-            this.currentUser = user;
+            currentUser = user;
         }
     }
     
