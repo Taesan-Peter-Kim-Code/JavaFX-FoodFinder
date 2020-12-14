@@ -89,6 +89,7 @@ public class SavedEventViewController implements Initializable{
     
     private ObservableList <Event> eventData;
     
+    
 
     public SavedEventViewController() {
         
@@ -144,10 +145,10 @@ public class SavedEventViewController implements Initializable{
     void deleteEvent(ActionEvent event) {
         Event e = savedEventView.getSelectionModel().getSelectedItem();
         int eventId = e.getId();
-        int userId = currentUser.getId();
+        //int userId = 
         
         Savedevent toDelete = new Savedevent();
-        toDelete = readEventIDAndUserID(eventId, userId);
+        //toDelete = readEventIDAndUserID(eventId, userId);
         
         delete(toDelete);
         

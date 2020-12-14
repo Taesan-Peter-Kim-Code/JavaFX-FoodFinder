@@ -5,6 +5,7 @@
  */
 package controller;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -131,7 +132,7 @@ public class LoginPageViewController implements Initializable {
     }
     
     @FXML
-    private void toLogin(ActionEvent event)
+    private void toLogin(ActionEvent event) throws IOException
     {
         
         Usermodel user = searchByEmailAndPassword(getEmailField().getText(), getPWField().getText());
@@ -146,7 +147,7 @@ public class LoginPageViewController implements Initializable {
                 login(user, event);
                 currentUserFlag = true;
                 setCurrentUser(user);
-            }
+                }
         }
     }
     
