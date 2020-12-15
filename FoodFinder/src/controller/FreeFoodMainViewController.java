@@ -70,6 +70,8 @@ public class FreeFoodMainViewController implements Initializable {
     
     private Event selectedEvent;
     
+    private Usermodel currentUser;
+    
     
     
    // private LoginPageViewController loginController;
@@ -89,10 +91,6 @@ public class FreeFoodMainViewController implements Initializable {
         
     }
     
-    public void getController(FreeFoodMainViewController mainController){
-        
-    }
-    
 
     @FXML
     void loadData(ActionEvent event) {
@@ -104,15 +102,13 @@ public class FreeFoodMainViewController implements Initializable {
 
     @FXML
     void saveEventBtn(ActionEvent event) throws IOException {
-         FXMLLoader loader = new FXMLLoader(getClass().getResource(
-               "/view/LoginPageView.fxml"));
-         Parent root = (Parent) loader.load();
-         LoginPageViewController ctrl = loader.getController();
         
-         Usermodel currentUser = ctrl.getCurrentUser();
+         Usermodel currentPerson = getCurrentUser();
         
         Event currentEvent = eventTable.getSelectionModel().getSelectedItem();
-        int currentUserID = currentUser.getId();
+        int currentUserID = currentPerson.getId();
+        
+      
         
         createSavedEvent(currentUserID, currentEvent);   
     }
@@ -157,6 +153,10 @@ public class FreeFoodMainViewController implements Initializable {
         FXMLLoader loader = new FXMLLoader(getClass().getResource(view));
         
         Parent root = loader.load();
+        
+        SavedEventViewController savedController = loader.getController();
+
+        savedController.setCurrentUser(getCurrentUser());
         
         Scene saveScene = new Scene(root);
         
@@ -223,13 +223,25 @@ public class FreeFoodMainViewController implements Initializable {
         int eventID = currentEvent.getId();
         int savedEventID = eventID;
         
-//        Savedevent newEvent = new Savedevent(savedEventID, userID, eventID);
+       Savedevent newEvent = new Savedevent(savedEventID, userID, eventID);
         
        
         
-//        create(newEvent);
+        create(newEvent);
     }
     
+
+    public void setCurrentUser(Usermodel user){
+        
+            currentUser = user;
+    }
+    
+    public Usermodel getCurrentUser(){
+        return currentUser;
+    }
+    
+    
+
 
 
 }
