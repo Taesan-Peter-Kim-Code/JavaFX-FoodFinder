@@ -235,24 +235,24 @@ public class SavedEventViewController implements Initializable{
         
         List <Savedevent> eventList;
         
-        if(id != 0){
+        if(id != 0) {
             eventList = readAll();
         
-        if(eventList != null){
+            if(eventList != null){
             
-        for(Savedevent e: eventList){
+            for(Savedevent e: eventList) {
             
-            id++;
+                id++;
             
-            if(id == e.getId()){
+                if(id == e.getId()){
+                    id++;
+                }
+            }
+        
+            } else {
                 id++;
             }
-        }
-        
-        }else{
-            id++;
-        }
-        }else{
+        } else {
             id++;
         }
         

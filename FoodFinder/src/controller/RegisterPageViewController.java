@@ -24,6 +24,7 @@ import javafx.stage.Stage;
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
+import javax.swing.JOptionPane;
 import model.Usermodel;
 
 /**
@@ -57,6 +58,8 @@ public class RegisterPageViewController implements Initializable {
     private Button registerBtn;
     @FXML
     private Button backBtn;
+    @FXML
+    private Label feedbackLabel;
     
     private EntityManager manager;
 
@@ -130,6 +133,16 @@ public class RegisterPageViewController implements Initializable {
         this.manager = manager;
     }
     
+    public Label getFeedbackLabel()
+    {
+        return feedbackLabel;
+    }
+
+    public void setFeedbackLabel(Label feedbackLabel)
+    {
+        this.feedbackLabel = feedbackLabel;
+    }
+    
     @FXML
     private void backAction(ActionEvent event) 
     {
@@ -162,33 +175,42 @@ public class RegisterPageViewController implements Initializable {
     {
         try
         {
-            Query query = getManager().createNamedQuery("Usermodel.findAll");
-            List<Usermodel> users = query.getResultList();
-            int id = 1;
-            
-            if (!users.isEmpty())
+            if (!(getPwTextField().getText().equals(getcPWTextField().getText())))
             {
-                if (getPwTextField().getText().equals(getcPWTextField().getText()))
-                {
-                    id = users.size() + 1;
-                }
+                getFeedbackLabel().setText("Password and Confirm Password do not match");
+                return;
             }
-            
-            Usermodel user = new Usermodel();
-            user.setId(id);
-            user.setFirstname(firstname);
-            user.setLastname(lastname);
-            user.setEmail(email);
-            user.setPassword(password);
             
             if (!searchUser(email)) 
             {
+                int id = 1;
+                Query query = getManager().createNamedQuery("Usermodel.findAll");
+                List<Usermodel> users = query.getResultList();
+                if (!users.isEmpty()) {
+                    
+                    id = users.size() + 1;
+                } 
+                 
+                Usermodel user = new Usermodel();
+                user.setId(id);
+     
+                user.setFirstname(firstname);
+                user.setLastname(lastname);
+                user.setEmail(email);
+                user.setPassword(password);
                 getManager().getTransaction().begin();
                 
                 getManager().persist(user);
                 getManager().getTransaction().commit();
+                
+                getFeedbackLabel().setText("Registration Succeed");
+                
             }
-            
+            else{
+                getFeedbackLabel().setText("Email already exists");
+                return;
+            }
+                   
         } 
         catch(Exception e)
         {
@@ -213,12 +235,11 @@ public class RegisterPageViewController implements Initializable {
             query.setParameter("email", email);
             Usermodel users = (Usermodel) query.getSingleResult();
             userFound = true;
-            System.out.println("Registration Failed");
-            
+   
             
         } catch (Exception e) {
             userFound = false;
-            System.out.println("Registration Succeed");
+            
         }
         return userFound;
     }

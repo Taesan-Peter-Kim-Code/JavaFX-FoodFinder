@@ -24,6 +24,7 @@ import javafx.stage.Stage;
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
+import javax.swing.JOptionPane;
 import model.Usermodel;
 
 /**
@@ -47,6 +48,8 @@ public class LoginPageViewController implements Initializable {
     private Button registerBtn;
     @FXML
     private Button loginBtn;
+    @FXML
+    private Label feedbackLabel;
     
     private EntityManager manager;
     
@@ -100,6 +103,16 @@ public class LoginPageViewController implements Initializable {
         this.manager = manager;
     }
     
+    public Label getFeedbackLabel()
+    {
+        return feedbackLabel;
+    }
+
+    public void setFeedbackLabel(Label feedbackLabel)
+    {
+        this.feedbackLabel = feedbackLabel;
+    }
+    
     
     /**
      * Initializes the controller class.
@@ -141,10 +154,13 @@ public class LoginPageViewController implements Initializable {
         {
             if (getEmailField().getText().equals("admin") && getPWField().getText().equals("admin")) {
                 loginAsAdmin(user, event);
+                System.out.println("Logged in as an admin");  
                 
             }
-            else{
-                login(user,event);
+
+            else
+            {
+                login(user,event);          
             }
         }
     }
@@ -199,7 +215,6 @@ public class LoginPageViewController implements Initializable {
         }
     }
     
-    
     private Usermodel searchByEmailAndPassword(String email, String password)
     {
         Query query = getManager().createNamedQuery("Usermodel.findByEmailAndPassword");
@@ -210,12 +225,12 @@ public class LoginPageViewController implements Initializable {
         
         if(users.size() < 1)
         {
-            System.out.println("No user exists");
+            getFeedbackLabel().setText("User does not exist");
             return null;
         }
-        else if(users.size() > 1)
+        else if (users.size() > 1)
         {
-            System.out.println("fsda");
+            getFeedbackLabel().setText("More than one user exists");
             return null;
         }
         else
@@ -223,7 +238,10 @@ public class LoginPageViewController implements Initializable {
             return users.get(0);
         }
         
+        
+        
     }
+    
     public void setCurrentUser(Usermodel user){
         
         if(currentUserFlag == true){

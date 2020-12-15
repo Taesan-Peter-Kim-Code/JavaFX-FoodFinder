@@ -4,6 +4,19 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/Users/taesankim/NetBeansProjects/JavaFX-FoodFinder/FoodFinder/src/view/AdminView.fxml</file>
+            <file>file:/Users/taesankim/NetBeansProjects/JavaFX-FoodFinder/FoodFinder/src/foodfinder/FoodFinder.java</file>
+            <file>file:/Users/taesankim/NetBeansProjects/JavaFX-FoodFinder/FoodFinder/src/controller/SavedEventViewController.java</file>
+            <file>file:/Users/taesankim/NetBeansProjects/JavaFX-FoodFinder/FoodFinder/src/model/Event.java</file>
+            <file>file:/Users/taesankim/NetBeansProjects/JavaFX-FoodFinder/FoodFinder/src/controller/FreeFoodMainViewController.java</file>
+            <file>file:/Users/taesankim/NetBeansProjects/JavaFX-FoodFinder/FoodFinder/src/controller/LoginPageViewController.java</file>
+            <file>file:/Users/taesankim/NetBeansProjects/JavaFX-FoodFinder/FoodFinder/src/model/Savedevent.java</file>
+            <file>file:/Users/taesankim/NetBeansProjects/JavaFX-FoodFinder/FoodFinder/src/view/UpdateEventView.fxml</file>
+            <file>file:/Users/taesankim/NetBeansProjects/JavaFX-FoodFinder/FoodFinder/src/controller/RegisterPageViewController.java</file>
+            <file>file:/Users/taesankim/NetBeansProjects/JavaFX-FoodFinder/FoodFinder/src/model/Usermodel.java</file>
+            <file>file:/Users/taesankim/NetBeansProjects/JavaFX-FoodFinder/FoodFinder/src/view/FreeFoodMainView.fxml</file>
+            <file>file:/Users/taesankim/NetBeansProjects/JavaFX-FoodFinder/FoodFinder/src/META-INF/persistence.xml</file>
+            <file>file:/Users/taesankim/NetBeansProjects/JavaFX-FoodFinder/FoodFinder/src/view/NewEventView.fxml</file>
+            <file>file:/Users/taesankim/NetBeansProjects/JavaFX-FoodFinder/FoodFinder/src/controller/AdminViewController.java</file>
         </group>
     </open-files>
 </project-private>
