@@ -8,13 +8,9 @@ package foodfinder;
 import java.io.IOException;
 import javafx.application.Application;
 import static javafx.application.Application.launch;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 /**
@@ -26,18 +22,11 @@ public class FoodFinder extends Application {
     @Override
     public void start(Stage primaryStage) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/view/LoginPageView.fxml"));
-        
-//        Parent root = FXMLLoader.load(getClass().getResource("/view/FreeFoodMainView.fxml"));
-        
-    //Parent root = FXMLLoader.load(getClass().getResource("/view/AdminView.fxml"));
-    
 
-        
         Scene scene = new Scene(root);
         
         primaryStage.setScene(scene);
         primaryStage.show();
-        
     }
 
     /**

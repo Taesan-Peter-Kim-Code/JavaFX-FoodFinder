@@ -5,7 +5,7 @@
  */
 package controller;
 
-import static com.sun.media.jfxmediaimpl.platform.PlatformManager.getManager;
+
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -24,7 +24,6 @@ import javafx.stage.Stage;
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
-import javax.swing.JOptionPane;
 import model.Usermodel;
 
 /**
@@ -63,7 +62,9 @@ public class RegisterPageViewController implements Initializable {
     
     private EntityManager manager;
 
-    // Getter and setter
+    /*
+    Getter and setter
+    */
     public TextField getFirstNameTextField() {
         return firstNameTextField;
     }
