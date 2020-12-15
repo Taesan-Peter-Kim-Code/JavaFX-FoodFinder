@@ -24,7 +24,6 @@ import javafx.stage.Stage;
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
-import javax.swing.JOptionPane;
 import model.Usermodel;
 
 /**
@@ -57,7 +56,9 @@ public class LoginPageViewController implements Initializable {
     
     private Usermodel currentUser;
     
-    
+    /*
+    Getter and setter
+    */
     public TextField getEmailField() {
         return emailTextField;
     }
@@ -73,6 +74,7 @@ public class LoginPageViewController implements Initializable {
     public void setPWField(PasswordField passwordField) {
         this.pwTextField = pwTextField;
     }
+    
     public Button getRegisterButton()
     {
         return registerBtn;
@@ -122,6 +124,7 @@ public class LoginPageViewController implements Initializable {
         setManager((EntityManager) Persistence.createEntityManagerFactory("FoodFinderPU").createEntityManager());
     }    
     
+    // Load RegisterPageView when the Register button is clicked
     @FXML
     private void toRegister(ActionEvent event)
     {
@@ -144,6 +147,7 @@ public class LoginPageViewController implements Initializable {
         }
     }
     
+    // Get user from searchByEmailAndPassword method using email and password input fields and call login function
     @FXML
     private void toLogin(ActionEvent event) throws IOException
     {
@@ -165,6 +169,7 @@ public class LoginPageViewController implements Initializable {
         }
     }
     
+    // Load AdminView when the returning user from searchByEmailAndPassword is admin account
     private void loginAsAdmin(Usermodel user, ActionEvent event)
     {
         try
@@ -174,10 +179,7 @@ public class LoginPageViewController implements Initializable {
 
             Scene mainScene = new Scene(mainView);
             Scene currentScene = ((Node)event.getSource()).getScene();
-            
-//            AdminViewController adminController = loader.getController();
-//            adminController.setPreviousScene(currentScene);
-               
+                           
             Stage stage = (Stage) currentScene.getWindow();
             stage.setScene(mainScene);
             stage.show();
@@ -188,11 +190,11 @@ public class LoginPageViewController implements Initializable {
         }
     }
     
+    // Load FreeFoodMainView when the account exists
     private void login(Usermodel user, ActionEvent event)
     {
         try
         {
-
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/FreeFoodMainView.fxml"));
             Parent mainView = loader.load();
             FreeFoodMainViewController foodController = loader.getController();
@@ -200,11 +202,7 @@ public class LoginPageViewController implements Initializable {
             Scene mainScene = new Scene(mainView);
             Scene currentScene = ((Node)event.getSource()).getScene();
             foodController.setCurrentUser(user);
-            
-            
-//            FreeFoodMainViewController mainController = loader.getController();
-//            mainController.setPreviousScene(currentScene);
-               
+                       
             Stage stage = (Stage) currentScene.getWindow();
             stage.setScene(mainScene);
             stage.show();
@@ -215,6 +213,7 @@ public class LoginPageViewController implements Initializable {
         }
     }
     
+    // Search email and password from Usermodel table and return the user when the user exists
     private Usermodel searchByEmailAndPassword(String email, String password)
     {
         Query query = getManager().createNamedQuery("Usermodel.findByEmailAndPassword");
@@ -236,10 +235,7 @@ public class LoginPageViewController implements Initializable {
         else
         {
             return users.get(0);
-        }
-        
-        
-        
+        }    
     }
     
     public void setCurrentUser(Usermodel user){
@@ -251,14 +247,5 @@ public class LoginPageViewController implements Initializable {
     
     public Usermodel getCurrentUser(){
         return currentUser;
-    }
-/*
-    public Integer setCurrentUserID(){
-        Usermodel user = searchByEmailAndPassword(getEmailField().getText(), getPWField().getText());
-        int userId = user.getId();
-        
-        return userId;
-    }
-*/
-    
+    } 
 }
