@@ -54,6 +54,9 @@ public class UpdateEventController implements Initializable{
     @FXML
     private Button updateButton;
     
+    @FXML    
+    private Button backBtn;
+
     private EntityManager myManager;
     
     
@@ -80,6 +83,26 @@ public class UpdateEventController implements Initializable{
         
         update(existingEvent);
    
+    }
+    
+    @FXML
+    void backAction(ActionEvent event) {
+          try
+        {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/AdminView.fxml"));
+            Parent loginView = loader.load();
+
+            Scene loginPage = new Scene(loginView);
+            Scene currentScene = ((Node)event.getSource()).getScene();
+
+            Stage stage = (Stage) currentScene.getWindow();
+            stage.setScene(loginPage);
+            stage.show();
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
     }
 
     @Override

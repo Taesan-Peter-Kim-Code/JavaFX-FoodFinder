@@ -46,6 +46,9 @@ public class NewEventController {
     @FXML
     private Button saveButton;
     
+    @FXML    
+    private Button backBtn;
+    
    // private AdminViewController mainAdminController;
     
 
@@ -111,9 +114,24 @@ public class NewEventController {
 */
     }
     
-     @FXML
+    @FXML
     void backAction(ActionEvent event) {
-         System.out.println("Go back");
+          try
+        {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/AdminView.fxml"));
+            Parent loginView = loader.load();
+
+            Scene loginPage = new Scene(loginView);
+            Scene currentScene = ((Node)event.getSource()).getScene();
+
+            Stage stage = (Stage) currentScene.getWindow();
+            stage.setScene(loginPage);
+            stage.show();
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
     }
 
     Scene previousScene;
