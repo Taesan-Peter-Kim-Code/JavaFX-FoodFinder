@@ -12,7 +12,6 @@ package controller;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
-import java.util.Scanner;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -30,9 +29,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 import model.Event;
-import controller.NewEventController;
 import java.io.IOException;
-import java.util.ArrayList;
 import javafx.scene.Node;
 import javafx.stage.Stage;
 import org.eclipse.persistence.config.HintValues;
@@ -43,8 +40,6 @@ import org.eclipse.persistence.config.QueryHints;
  *
  * @author haydenLong
  */
-
-
 public class AdminViewController implements Initializable {
     
     @FXML
@@ -88,7 +83,6 @@ public class AdminViewController implements Initializable {
     
     private Event selectedEvent;
     
-    
     public void setTableData(List<Event> eventList) {
         
         eventData = FXCollections.observableArrayList();
@@ -100,8 +94,7 @@ public class AdminViewController implements Initializable {
         
         eventView.setItems(eventData);
         eventView.refresh();
-       
-        
+ 
     }
     
     @FXML
@@ -143,47 +136,7 @@ public class AdminViewController implements Initializable {
         stage.setScene(tableViewScene);
         stage.show();
         
-        //createButtonLogic();
-        
-        
-        /*
-        System.out.println("Creating new event");
-        
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/NewEventView.fxml"));
-
-        Parent newEventView = loader.load();
-
-        Scene tableViewScene = new Scene(newEventView);
-
-        NewEventController newEventController = loader.getController();
-        
-        Stage stage = new Stage();
-        stage.setScene(tableViewScene);
-        stage.show();
-        
-        int id = 0; 
-        
-        Event newEvent = new Event();
-        
-        for(Event e: eventData){
-            if(id == e.getId()){
-                id++;
-            }
-        }
-        newEvent.setId(id);
-        
-        newEventController.createEvent(event, id, newEvent);
-        /*
-        newEvent.setEventname(eventName);
-        newEvent.setOrganization(organization);
-        newEvent.setDate(date);
-        newEvent.setTime(time);
-        newEvent.setDescription(description);
-               
-        create(newEvent);
-*/
         eventView.refresh();
-
     }
 
     @FXML
@@ -198,18 +151,15 @@ public class AdminViewController implements Initializable {
 
     @FXML
     void readEvents(ActionEvent event) {//handles button to refresh data and calls method
-        //eventView.refresh();
-        
+       
         events = readAll();
-        
-        setTableData(events);
-        
+       
+        setTableData(events);       
     }
 
     @FXML
     void updateEvent(ActionEvent event) throws IOException {//pulls up update event view and sets fields
         
-       
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/UpdateEventView.fxml"));
 
         Parent newEventView = loader.load();
@@ -229,12 +179,7 @@ public class AdminViewController implements Initializable {
         Event updateEvent = eventView.getSelectionModel().getSelectedItem();
         
         updateController.setFields(updateEvent);
-        
-        
-       // updateController.setId(updateEvent);
-       
-       
-        
+              
     }
     
      @Override
@@ -248,12 +193,11 @@ public class AdminViewController implements Initializable {
         dateColumn.setCellValueFactory(new PropertyValueFactory<>("date"));
         timeColumn.setCellValueFactory(new PropertyValueFactory<>("time"));
         desColumn.setCellValueFactory(new PropertyValueFactory<>("description"));
-        
-        
+         
         eventView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
-        
 
-}
+    }
+    
     public void create(Event newEvent) {//creates a new event in the database
         try {
             myManager.getTransaction().begin();
@@ -281,45 +225,16 @@ public class AdminViewController implements Initializable {
     
     public void delete(Event selectedEvent) {//deletes entries from the database
         try {
-           
                 myManager.getTransaction().begin();
-                
-    
+
                 myManager.remove(selectedEvent);
-                
-      
+
                 myManager.getTransaction().commit();
  
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
     }
-    
-    /*
-    public void createButtonLogic() throws IOException{//This handles the passing to the new view and setting the ID
-        System.out.println("Creating new event");
-        
-        
-        
-        
-        /*
-        
-        int id = 0; 
-        
-        Event newEvent = new Event();
-        
-        for(Event e: eventData){
-            if(id == e.getId()){
-                id++;
-            }
-        }
-        newEvent.setId(id);
-        
-        newEventController.createEntry(id, newEvent);
-*/
-    /*
-    }
-*/
     
     public Integer createID(){//creates an ID for an event based on the existing table
         
@@ -332,79 +247,17 @@ public class AdminViewController implements Initializable {
         if(eventList != null){
             for(Event e: eventList){
             
-            id++;
-            
-            if(id == e.getId()){
                 id++;
+            
+                if(id == e.getId()){
+                    id++;
+                }
             }
-        }
         }
         else{
         id++;
-    }
-        
-        
+        }
         return id;
-    }
-    /*
-     public void update(Event model) {
-        try {
-
-            Event existingEvent = myManager.find(Event.class, model.getId());
-
-            if (existingEvent != null) {
-                // begin transaction
-                myManager.getTransaction().begin();
-                
-                // update all atttributes
-                existingEvent.setId(model.getId());
-                existingEvent.setEventname(model.getEventname());
-                existingEvent.setOrganization(model.getOrganization());
-                existingEvent.setDate(model.getDate());
-                existingEvent.setTime(model.getTime());
-                existingEvent.setDescription(model.getDescription());
-                
-                // end transaction
-                myManager.getTransaction().commit();
-                
-                System.out.println(existingEvent.toString() + " is updated");
-            }
-        } catch (Exception ex) {
-            System.out.println(ex.getMessage());
-        }
-        
-    }
-    
-    /*
-    public void update(Event model) {
-        try {
-
-            Event existingEvent = myManager.find(Event.class, model.getId());
-
-            if (existingEvent != null) {
-                // begin transaction
-                myManager.getTransaction().begin();
-                
-                // update all atttributes
-                existingEvent.setId(model.getId());
-                existingEvent.setEventname(model.getEventname());
-                existingEvent.setOrganization(model.getOrganization());
-                existingEvent.setDate(model.getDate());
-                existingEvent.setTime(model.getTime());
-                existingEvent.setDescription(model.getDescription());
-                
-                // end transaction
-                myManager.getTransaction().commit();
-                
-                System.out.println(existingEvent.toString() + " is updated");
-            }
-        } catch (Exception ex) {
-            System.out.println(ex.getMessage());
-        }
-        
-    }
-*/
-    
-    
+    }   
 }
 

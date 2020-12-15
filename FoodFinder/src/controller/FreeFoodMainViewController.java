@@ -25,7 +25,6 @@ import javax.persistence.Query;
 import model.Event;
 import model.Savedevent;
 import model.Usermodel;
-import controller.LoginPageViewController;
 
 /**
  *
@@ -73,13 +72,8 @@ public class FreeFoodMainViewController implements Initializable {
     private Usermodel currentUser;
     
     private Integer savedID;
-    
-    
-    
-    
-    
-   // private LoginPageViewController loginController;
-    
+       
+   // private LoginPageViewController loginController;  
     public void setTableData(List<Event> eventList) {//sets the main tableview
         
         eventData = FXCollections.observableArrayList();
@@ -90,16 +84,13 @@ public class FreeFoodMainViewController implements Initializable {
         });
         
         eventTable.setItems(eventData);
-        eventTable.refresh();
-       
-        
+        eventTable.refresh();  
     }
     
     @FXML
     void showEventView(ActionEvent event) {//loads the saveEvents view and passes currentUser
          try
         {
-
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/SavedEventView.fxml"));
             Parent mainView = loader.load();
             SavedEventViewController savedController = loader.getController();
@@ -118,7 +109,6 @@ public class FreeFoodMainViewController implements Initializable {
         }
     }
     
-
     @FXML
     void loadData(ActionEvent event) {//queries the database for the data needed for the tableView
         
@@ -135,9 +125,7 @@ public class FreeFoodMainViewController implements Initializable {
         Event currentEvent = eventTable.getSelectionModel().getSelectedItem();
         int currentUserID = currentPerson.getId();
         System.out.println(currentUserID);
-        
-      
-        
+  
         createSavedEvent(currentUserID, currentEvent);   
     }
 
@@ -155,9 +143,7 @@ public class FreeFoodMainViewController implements Initializable {
         
         
         eventTable.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
-        
-
-}
+    }
     
     @FXML
      public List readAll(){//queries the database to load all the existing data
@@ -212,29 +198,7 @@ public class FreeFoodMainViewController implements Initializable {
             System.out.println(ex.getMessage());
         }
     }
-/*
-    public Integer createID(){
-        
-        int id = 0;
-        
-        List <Savedevent> eventList;
-        
-        SavedEventViewController savedController = new SavedEventViewController();
-        
-        eventList = savedController.readAll();
-        
-        for(Savedevent e: eventList){
-            
-            id++;
-            
-            if(id == e.getId()){
-                id++;
-            }
-        }
-        return id;
-    }
-*/
-    
+   
     public void createSavedEvent(Integer userID, Event currentEvent){//creates a new saved event and calls the database create function
         
          //Savedevent newEvent = new Savedevent(null, null, null);
@@ -246,8 +210,6 @@ public class FreeFoodMainViewController implements Initializable {
         
         create(newEvent);
     }
-    
-    
 
     public void setCurrentUser(Usermodel user){//sets current user from another view
         
@@ -266,8 +228,4 @@ public class FreeFoodMainViewController implements Initializable {
         return savedID;
     }
     
-    
-
-
-
 }

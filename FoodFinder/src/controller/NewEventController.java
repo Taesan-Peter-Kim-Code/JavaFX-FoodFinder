@@ -15,7 +15,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import model.Event;
-import controller.FreeFoodMainViewController;
 import java.io.IOException;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -50,15 +49,12 @@ public class NewEventController {
     private Button backBtn;
     
    // private AdminViewController mainAdminController;
-    
-
     @FXML
     void createEvent(ActionEvent event) throws IOException{//loads the admin view once the user clicks the "save" button and calls create entry function for database
         System.out.println("Creating entry");
         
         Event newEvent = new Event();
 
-        
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/AdminView.fxml"));
 
         Parent adminView = loader.load();
@@ -81,37 +77,9 @@ public class NewEventController {
         System.out.println(id);
         
         newEvent = createEntry(id);
-        
-          
+               
         adminController.create(newEvent);
         
-        
-        /*
-        
-        id = this.id;
-        newEvent = this.newEvent;
-        String eventName = eventNameField.getText();
-        String organization = organizationField.getText();
-        String date = dateField.getText();
-        String time = timeField.getText();
-        String description = descriptionField.getText();
-        
-        newEvent.setEventname(eventName);
-        newEvent.setOrganization(organization);
-        newEvent.setDate(date);
-        newEvent.setTime(time);
-        newEvent.setDescription(description);
-               
-        mainAdminController.create(newEvent);
-        
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/AdminView.fxml"));
-
-        Parent adminView = loader.load();
-
-        Scene tableViewScene = new Scene(adminView);
-
-        AdminViewController adminController = loader.getController();
-*/
     }
     
     @FXML
@@ -140,21 +108,13 @@ public class NewEventController {
         previousScene = scene;
 
     }
-
-    
+   
     public Event createEntry(int id) throws IOException {//gets information from view text fields and returns the newEvent
         
-
-        
-        //AdminViewController mainAdminController = this.mainAdminController;
-        
-        
         Event newEvent = new Event();
-      
-        
+              
         newEvent.setId(id);
         
-
         String eventName = eventNameField.getText();
         String organization = organizationField.getText();
         String date = dateField.getText();
@@ -168,8 +128,6 @@ public class NewEventController {
         newEvent.setTime(time);
         newEvent.setDescription(description);
                
-       
-        
         return newEvent;
     }
 
