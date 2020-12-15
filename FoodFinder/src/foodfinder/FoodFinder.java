@@ -19,6 +19,7 @@ import javafx.stage.Stage;
  */
 public class FoodFinder extends Application {
     
+    // Main function to call the application by loading LoginPageView
     @Override
     public void start(Stage primaryStage) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/view/LoginPageView.fxml"));
