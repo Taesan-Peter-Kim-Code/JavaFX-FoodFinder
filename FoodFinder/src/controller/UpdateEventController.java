@@ -62,7 +62,7 @@ public class UpdateEventController implements Initializable{
     
 
     @FXML
-    void updateEvent(ActionEvent event) throws IOException {
+    void updateEvent(ActionEvent event) throws IOException {//loads adminView page upon click and calls the update function
                 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/AdminView.fxml"));
 
@@ -86,7 +86,7 @@ public class UpdateEventController implements Initializable{
     }
     
     @FXML
-    void backAction(ActionEvent event) {
+    void backAction(ActionEvent event) {//provides the action for the back button on click (loading the admin view)
           try
         {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/AdminView.fxml"));
@@ -106,7 +106,7 @@ public class UpdateEventController implements Initializable{
     }
 
     @Override
-    public void initialize(URL url, ResourceBundle rb) {
+    public void initialize(URL url, ResourceBundle rb) {//intializes the persistence unit as the fields are set in another method
 
         myManager = (EntityManager) Persistence.createEntityManagerFactory("FoodFinderPU").createEntityManager();
         
@@ -128,14 +128,14 @@ public class UpdateEventController implements Initializable{
     
     Scene previousScene;
 
-    public void setPreviousScene(Scene scene) {
+    public void setPreviousScene(Scene scene) {//sets previous scene
         previousScene = scene;
 
     }
     
      Event existingEvent;
     
-    public void setFields(Event updatedEvent){
+    public void setFields(Event updatedEvent){//sets fields to allow user to alter the existing event, the information is passed in from the admin view
         //System.out.printn("Set fields");
         String id = Integer.toString(updatedEvent.getId());
         idField.setText(id);
@@ -148,7 +148,7 @@ public class UpdateEventController implements Initializable{
     }
     
    
-    public Event updateEvent(){
+    public Event updateEvent(){//gets the updated data from the text fields and returns an event object
         
         String stringID = idField.getText();
         int id = Integer.parseInt(stringID);
@@ -167,13 +167,13 @@ public class UpdateEventController implements Initializable{
         
     }
     
-    public void setId(Event existingEvent){
+    public void setId(Event existingEvent){//setter for ID
         
         int id = existingEvent.getId();
   
     }
     
-    public void update(Event model) {
+    public void update(Event model) {//updates the Database
         try {
 
             Event existingEvent = myManager.find(Event.class, model.getId());
