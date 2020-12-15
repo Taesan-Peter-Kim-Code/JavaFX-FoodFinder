@@ -16,10 +16,8 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
@@ -109,22 +107,7 @@ public class UpdateEventController implements Initializable{
     public void initialize(URL url, ResourceBundle rb) {//intializes the persistence unit as the fields are set in another method
 
         myManager = (EntityManager) Persistence.createEntityManagerFactory("FoodFinderPU").createEntityManager();
-        
-        /*
-        
-        idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
-        eventNameColumn.setCellValueFactory(new PropertyValueFactory<>("eventname"));
-        orgColumn.setCellValueFactory(new PropertyValueFactory<>("organization"));
-        dateColumn.setCellValueFactory(new PropertyValueFactory<>("date"));
-        timeColumn.setCellValueFactory(new PropertyValueFactory<>("time"));
-        desColumn.setCellValueFactory(new PropertyValueFactory<>("description"));
-        
-        
-        eventView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
-*/
-        
-
-}
+    }
     
     Scene previousScene;
 
@@ -133,7 +116,7 @@ public class UpdateEventController implements Initializable{
 
     }
     
-     Event existingEvent;
+    Event existingEvent;
     
     public void setFields(Event updatedEvent){//sets fields to allow user to alter the existing event, the information is passed in from the admin view
         //System.out.printn("Set fields");
@@ -161,23 +144,19 @@ public class UpdateEventController implements Initializable{
         existingEvent.setDescription(descriptionField.getText());
         
         System.out.println("Is this working?");
-        
-              
+      
         return existingEvent;
         
     }
     
-    public void setId(Event existingEvent){//setter for ID
-        
+    public void setId(Event existingEvent){//setter for ID       
         int id = existingEvent.getId();
-  
     }
     
     public void update(Event model) {//updates the Database
         try {
 
             Event existingEvent = myManager.find(Event.class, model.getId());
-
             if (existingEvent != null) {
                 // begin transaction
                 myManager.getTransaction().begin();
@@ -197,12 +176,7 @@ public class UpdateEventController implements Initializable{
             }
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
-        }
-        
+        }   
     }
-    
-
-    
-
 }
 

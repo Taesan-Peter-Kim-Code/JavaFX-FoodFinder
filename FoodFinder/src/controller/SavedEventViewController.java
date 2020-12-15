@@ -26,8 +26,6 @@ import javax.persistence.Query;
 import model.Event;
 import model.Savedevent;
 import model.Usermodel;
-import org.eclipse.persistence.config.HintValues;
-import org.eclipse.persistence.config.QueryHints;
 
 /**
  * SavedEventViewController
@@ -144,8 +142,7 @@ public class SavedEventViewController implements Initializable{
         Savedevent toDelete = readEventIDAndUserID(eventId, userID);
         
         delete(toDelete);
-        
-        
+   
     }
 
     @FXML
@@ -168,8 +165,7 @@ public class SavedEventViewController implements Initializable{
         dateColumn.setCellValueFactory(new PropertyValueFactory<>("date"));
         timeColumn.setCellValueFactory(new PropertyValueFactory<>("time"));
         descriptionColumn.setCellValueFactory(new PropertyValueFactory<>("description"));
-        
-        
+
         savedEventView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
 
 }
@@ -229,7 +225,6 @@ public class SavedEventViewController implements Initializable{
             System.out.println(ex.getMessage());
         }
 
-
     }
      public Integer createID(){//creates an ID for an event or savedEvent
         
@@ -256,16 +251,14 @@ public class SavedEventViewController implements Initializable{
             }
         } else {
             id++;
-        }
-        
-        
-        return id;
-        
-}
-      public void setCurrentUser(Usermodel user){//setter for current logged in user
+        }   
+        return id;     
+    }
+     
+    public void setCurrentUser(Usermodel user){//setter for current logged in user
             currentUser = user;
     }
-    
+      
     public Usermodel getCurrentUser(){//getter for current logged in user
         return currentUser;
     }
