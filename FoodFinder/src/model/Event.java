@@ -53,6 +53,16 @@ public class Event implements Serializable {
 
     public Event() {
     }
+    
+    public Event(Integer id, String eventname, String organization, String date, String time, String location, String description) {
+        this.id = id;
+        this.eventname = eventname;
+        this.organization = organization;
+        this.date = date;
+        this.time = time;
+        this.location = location;
+        this.description = description;  
+    }
 
     public Event(Integer id) {
         this.id = id;
