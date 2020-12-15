@@ -72,6 +72,10 @@ public class FreeFoodMainViewController implements Initializable {
     
     private Usermodel currentUser;
     
+    private Integer savedID;
+    
+    
+    
     
     
    // private LoginPageViewController loginController;
@@ -91,6 +95,29 @@ public class FreeFoodMainViewController implements Initializable {
         
     }
     
+    @FXML
+    void showEventView(ActionEvent event) {
+         try
+        {
+
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/SavedEventView.fxml"));
+            Parent mainView = loader.load();
+            SavedEventViewController savedController = loader.getController();
+            Usermodel currentDude = getCurrentUser();
+            savedController.setCurrentUser(currentDude);
+
+            Scene mainScene = new Scene(mainView);
+            Scene currentScene = ((Node)event.getSource()).getScene();
+            Stage stage = (Stage) currentScene.getWindow();
+            stage.setScene(mainScene);
+            stage.show();
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+    }
+    
 
     @FXML
     void loadData(ActionEvent event) {
@@ -103,10 +130,11 @@ public class FreeFoodMainViewController implements Initializable {
     @FXML
     void saveEventBtn(ActionEvent event) throws IOException {
         
-         Usermodel currentPerson = getCurrentUser();
+        Usermodel currentPerson = getCurrentUser();
         
         Event currentEvent = eventTable.getSelectionModel().getSelectedItem();
         int currentUserID = currentPerson.getId();
+        System.out.println(currentUserID);
         
       
         
@@ -153,10 +181,6 @@ public class FreeFoodMainViewController implements Initializable {
         FXMLLoader loader = new FXMLLoader(getClass().getResource(view));
         
         Parent root = loader.load();
-        
-        SavedEventViewController savedController = loader.getController();
-
-        savedController.setCurrentUser(getCurrentUser());
         
         Scene saveScene = new Scene(root);
         
@@ -212,23 +236,17 @@ public class FreeFoodMainViewController implements Initializable {
 */
     
     public void createSavedEvent(Integer userID, Event currentEvent){
-        /*
         
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/SavedEventView.fxml"));
-        SavedEventViewController savedController = loader.getController();
-        */
-
          //Savedevent newEvent = new Savedevent(null, null, null);
 
         int eventID = currentEvent.getId();
-        int savedEventID = eventID;
+        int savedEventID = eventID + 10;
         
-       Savedevent newEvent = new Savedevent(savedEventID, userID, eventID);
-        
-       
+        Savedevent newEvent = new Savedevent(savedEventID, userID, eventID);    
         
         create(newEvent);
     }
+    
     
 
     public void setCurrentUser(Usermodel user){
@@ -238,6 +256,14 @@ public class FreeFoodMainViewController implements Initializable {
     
     public Usermodel getCurrentUser(){
         return currentUser;
+    }
+    
+    public void setSavedEventID(Integer savedEventID){
+        savedID = savedEventID;
+    }
+    
+    public Integer getSavedEventID(){
+        return savedID;
     }
     
     

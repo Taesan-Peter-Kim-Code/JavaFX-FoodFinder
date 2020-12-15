@@ -26,6 +26,8 @@ import javax.persistence.Query;
 import model.Event;
 import model.Savedevent;
 import model.Usermodel;
+import org.eclipse.persistence.config.HintValues;
+import org.eclipse.persistence.config.QueryHints;
 
 /**
  * SavedEventViewController
@@ -136,10 +138,10 @@ public class SavedEventViewController implements Initializable{
     void deleteEvent(ActionEvent event) {
         Event e = savedEventView.getSelectionModel().getSelectedItem();
         int eventId = e.getId();
-        //int userId = 
         
-        Savedevent toDelete = new Savedevent();
-        //toDelete = readEventIDAndUserID(eventId, userId);
+        Usermodel user = getCurrentUser();
+        int userID = user.getId();
+        Savedevent toDelete = readEventIDAndUserID(eventId, userID);
         
         delete(toDelete);
         

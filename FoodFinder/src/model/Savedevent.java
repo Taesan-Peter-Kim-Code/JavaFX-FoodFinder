@@ -26,7 +26,8 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Savedevent.findAll", query = "SELECT s FROM Savedevent s")
     , @NamedQuery(name = "Savedevent.findById", query = "SELECT s FROM Savedevent s WHERE s.id = :id")
     , @NamedQuery(name = "Savedevent.findByEventid", query = "SELECT s FROM Savedevent s WHERE s.eventid = :eventid")
-    , @NamedQuery(name = "Savedevent.findByUserid", query = "SELECT s FROM Savedevent s WHERE s.userid = :userid")})
+    , @NamedQuery(name = "Savedevent.findByUserid", query = "SELECT s FROM Savedevent s WHERE s.userid = :userid")
+    , @NamedQuery(name = "Savedevent.findByEventidAndUserid", query = "SELECT s FROM Savedevent s WHERE s.eventid = :eventid AND s.userid = :userid")})
 public class Savedevent implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -42,8 +43,10 @@ public class Savedevent implements Serializable {
     public Savedevent() {
     }
 
-    public Savedevent(Integer id) {
+    public Savedevent(Integer id, Integer userid, Integer eventid) {
         this.id = id;
+        this.eventid = eventid;
+        this.userid = userid;
     }
 
     public Integer getId() {
