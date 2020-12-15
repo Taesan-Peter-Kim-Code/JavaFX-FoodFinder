@@ -105,6 +105,24 @@ public class AdminViewController implements Initializable {
     }
     
     @FXML
+    void showView(ActionEvent event) throws IOException {
+        String view = (String) ((Node) event.getSource()).getUserData();
+        
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(view));
+        
+        Parent root = loader.load();
+        
+        Scene saveScene = new Scene(root);
+        
+        Scene currentScene = ((Node) event.getSource()).getScene();
+        
+        Stage stage = (Stage) currentScene.getWindow();
+        
+        stage.setScene(saveScene);
+        stage.show();
+    }
+    
+    @FXML
     void createButtonAction(ActionEvent event) throws IOException {
         
         System.out.println("Creating new event");
