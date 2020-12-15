@@ -80,7 +80,7 @@ public class FreeFoodMainViewController implements Initializable {
     
    // private LoginPageViewController loginController;
     
-    public void setTableData(List<Event> eventList) {
+    public void setTableData(List<Event> eventList) {//sets the main tableview
         
         eventData = FXCollections.observableArrayList();
         
@@ -96,7 +96,7 @@ public class FreeFoodMainViewController implements Initializable {
     }
     
     @FXML
-    void showEventView(ActionEvent event) {
+    void showEventView(ActionEvent event) {//loads the saveEvents view and passes currentUser
          try
         {
 
@@ -120,7 +120,7 @@ public class FreeFoodMainViewController implements Initializable {
     
 
     @FXML
-    void loadData(ActionEvent event) {
+    void loadData(ActionEvent event) {//queries the database for the data needed for the tableView
         
         events = readAll();
         
@@ -128,7 +128,7 @@ public class FreeFoodMainViewController implements Initializable {
     }
 
     @FXML
-    void saveEventBtn(ActionEvent event) throws IOException {
+    void saveEventBtn(ActionEvent event) throws IOException {//handles the saveButton event, calls the method to create a savedEvent, and selects the currently selected event
         
         Usermodel currentPerson = getCurrentUser();
         
@@ -142,7 +142,7 @@ public class FreeFoodMainViewController implements Initializable {
     }
 
     @Override
-    public void initialize(URL url, ResourceBundle rb) {
+    public void initialize(URL url, ResourceBundle rb) {//initializes the main view
 
         myManager = (EntityManager) Persistence.createEntityManagerFactory("FoodFinderPU").createEntityManager();
         
@@ -160,7 +160,7 @@ public class FreeFoodMainViewController implements Initializable {
 }
     
     @FXML
-     public List readAll(){
+     public List readAll(){//queries the database to load all the existing data
          
         Query query = myManager.createNamedQuery("Event.findAll");
                List<Event> events = query.getResultList();
@@ -169,13 +169,13 @@ public class FreeFoodMainViewController implements Initializable {
 
     Scene previousScene;
 
-    public void setPreviousScene(Scene scene) {
+    public void setPreviousScene(Scene scene) {//sets the previous scene for the back button
         previousScene = scene;
 
     }
     
     @FXML
-    void showView(ActionEvent event) throws IOException {
+    void showView(ActionEvent event) throws IOException {//commands to load views from all the nav bar buttons but the savedEvent view
         String view = (String) ((Node) event.getSource()).getUserData();
         
         FXMLLoader loader = new FXMLLoader(getClass().getResource(view));
@@ -192,7 +192,7 @@ public class FreeFoodMainViewController implements Initializable {
         stage.show();
     }
     
-    public void create(Savedevent newEvent) {
+    public void create(Savedevent newEvent) {//creates a new entry in the database table
         //System.out.println("We got this far");
         try {
             myManager.getTransaction().begin();
@@ -235,7 +235,7 @@ public class FreeFoodMainViewController implements Initializable {
     }
 */
     
-    public void createSavedEvent(Integer userID, Event currentEvent){
+    public void createSavedEvent(Integer userID, Event currentEvent){//creates a new saved event and calls the database create function
         
          //Savedevent newEvent = new Savedevent(null, null, null);
 
@@ -249,20 +249,20 @@ public class FreeFoodMainViewController implements Initializable {
     
     
 
-    public void setCurrentUser(Usermodel user){
+    public void setCurrentUser(Usermodel user){//sets current user from another view
         
             currentUser = user;
     }
     
-    public Usermodel getCurrentUser(){
+    public Usermodel getCurrentUser(){//getter for user
         return currentUser;
     }
     
-    public void setSavedEventID(Integer savedEventID){
+    public void setSavedEventID(Integer savedEventID){//sets current saved event
         savedID = savedEventID;
     }
     
-    public Integer getSavedEventID(){
+    public Integer getSavedEventID(){//getter for saved event
         return savedID;
     }
     

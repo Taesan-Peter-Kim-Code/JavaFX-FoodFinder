@@ -187,7 +187,7 @@ public class AdminViewController implements Initializable {
     }
 
     @FXML
-    void deleteEvent(ActionEvent event) {
+    void deleteEvent(ActionEvent event) {//selects event and calls delete method
         
        Event e = eventView.getSelectionModel().getSelectedItem();
        
@@ -197,7 +197,7 @@ public class AdminViewController implements Initializable {
     }
 
     @FXML
-    void readEvents(ActionEvent event) {
+    void readEvents(ActionEvent event) {//handles button to refresh data and calls method
         //eventView.refresh();
         
         events = readAll();
@@ -207,7 +207,7 @@ public class AdminViewController implements Initializable {
     }
 
     @FXML
-    void updateEvent(ActionEvent event) throws IOException {
+    void updateEvent(ActionEvent event) throws IOException {//pulls up update event view and sets fields
         
        
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/UpdateEventView.fxml"));
@@ -238,7 +238,7 @@ public class AdminViewController implements Initializable {
     }
     
      @Override
-    public void initialize(URL url, ResourceBundle rb) {
+    public void initialize(URL url, ResourceBundle rb) {//intializes admin view
 
         myManager = (EntityManager) Persistence.createEntityManagerFactory("FoodFinderPU").createEntityManager();
         
@@ -254,7 +254,7 @@ public class AdminViewController implements Initializable {
         
 
 }
-    public void create(Event newEvent) {
+    public void create(Event newEvent) {//creates a new event in the database
         try {
             myManager.getTransaction().begin();
             
@@ -271,7 +271,7 @@ public class AdminViewController implements Initializable {
         }
     }
     
-    public List<Event> readAll(){
+    public List<Event> readAll(){//queries the database and loads all data
         Query query = myManager.createNamedQuery("Event.findAll");
         query.setHint(QueryHints.REFRESH, HintValues.TRUE);
         List<Event> events = query.getResultList();
@@ -279,7 +279,7 @@ public class AdminViewController implements Initializable {
         return events;
     }
     
-    public void delete(Event selectedEvent) {
+    public void delete(Event selectedEvent) {//deletes entries from the database
         try {
            
                 myManager.getTransaction().begin();
@@ -321,7 +321,7 @@ public class AdminViewController implements Initializable {
     }
 */
     
-    public Integer createID(){
+    public Integer createID(){//creates an ID for an event based on the existing table
         
         int id = 0;
         
