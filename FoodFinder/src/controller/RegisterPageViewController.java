@@ -63,6 +63,7 @@ public class RegisterPageViewController implements Initializable {
     
     private EntityManager manager;
 
+    // Getter and setter
     public TextField getFirstNameTextField() {
         return firstNameTextField;
     }
@@ -143,6 +144,7 @@ public class RegisterPageViewController implements Initializable {
         this.feedbackLabel = feedbackLabel;
     }
     
+    // Load LoginPageView when back button is clicked
     @FXML
     private void backAction(ActionEvent event) 
     {
@@ -164,6 +166,7 @@ public class RegisterPageViewController implements Initializable {
         }
     }
     
+    // Call createUser function when register button is clicked
     @FXML
     private void toRegister(ActionEvent event) 
     {
@@ -171,6 +174,7 @@ public class RegisterPageViewController implements Initializable {
         
     }
     
+    // Get inputs from user and check if the inputs are reasonable and added the account to the Usermodel table
     private void createUser(String firstname, String lastname, String email, String password)
     {
         try
@@ -209,8 +213,7 @@ public class RegisterPageViewController implements Initializable {
             else{
                 getFeedbackLabel().setText("Email already exists");
                 return;
-            }
-                   
+            }          
         } 
         catch(Exception e)
         {
@@ -225,8 +228,8 @@ public class RegisterPageViewController implements Initializable {
         setManager((EntityManager) Persistence.createEntityManagerFactory("FoodFinderPU").createEntityManager());
     }
 
-    private boolean searchUser(String email) {
-        
+    // Search if the email already exists and return boolean point of userFound
+    private boolean searchUser(String email) {     
         boolean userFound = false;
         
         try 
@@ -235,13 +238,11 @@ public class RegisterPageViewController implements Initializable {
             query.setParameter("email", email);
             Usermodel users = (Usermodel) query.getSingleResult();
             userFound = true;
-   
-            
+  
         } catch (Exception e) {
             userFound = false;
             
         }
         return userFound;
-    }
-     
+    } 
 }
