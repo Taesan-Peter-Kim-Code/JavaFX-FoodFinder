@@ -42,8 +42,10 @@ public class Savedevent implements Serializable {
     public Savedevent() {
     }
 
-    public Savedevent(Integer id) {
+    public Savedevent(Integer id, Integer eventid, Integer userid) {
         this.id = id;
+        this.eventid = eventid;
+        this.userid = userid;
     }
 
     public Integer getId() {
